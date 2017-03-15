@@ -194,7 +194,8 @@ IV. Understanding Appl Licecycle Mgmt
     Go back into CodePipeline and delete the previous PL
 
     From Mike's Github account, Download the CloudFormation template to install Jenkins on an EC2 instance
-    -Create a CloudFormation stack using the template
+   
+    Open AWS and Create a CloudFormation stack using the template
       -stack name: jenkins
       -instance type: t2.micro
       -KeyName:
@@ -203,9 +204,45 @@ IV. Understanding Appl Licecycle Mgmt
       -Your IP Range: 0.0.0.0/0
       - DON'T TAG
       
-
-
-
+      - Once build complete, Connect to URL of Jenkins server and proceed to secure it
+        -Get password from server: cat /var/lib/jenkins/secrets/initialAdminPassword
+        -Manage Jenkins -> Configure Global Security -> Enable Security
+        - Jenkins own user database, Allow users to sign up
+        - Manage pluggins -> Installed
+          -AWS CodePipeline
+        - Dashboard -> Manage Jenkins -> Configure System
+          -Configure Env variables so Jenkins can find the Rake utility
+             name: PATH
+             Value: $PATH:/usr/local/bin
+       
+       - Dashboard -> New Item -> 
+            Name: Build Project
+            Freestyle project
+            oK
+            
+            Execute Concurrent builds if necessary
+            Source Code Mngt: AWS CodePipeline
+            Region:
+            Category: build
+            Provider: Jenkins
+            Build Triggers:  Poll SCM
+            Schedule: * * * * *
+            Build:  
+              Execute Shell: Command = rake
+            Post-Buil Actions: AWS CodePipeline Publisher
+         
+        - Connect to AWS CodePipelin & Create New PL
+           - Name: JenkinsPL
+           - Source Provider: GitHub
+           - Repository: GitHub -> Connect
+              select repo
+              mstr branch
+           - Buiild Provider: Jenkins
+           - Project name: BuildProject
+           - Deplymt Provider: AWS CodeDeploy
+           App Name: DemoApp
+           Dep Group: DemoAppinstances
+           CreatePL
 
 
 
