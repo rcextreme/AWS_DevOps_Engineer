@@ -88,6 +88,7 @@ III.V  Automation and Configuration Management Tools
  - End-to-end automated tests
 
 
+
 IV. Understanding Appl Licecycle Mgmt
 
   IV.I Intro
@@ -154,7 +155,7 @@ IV. Understanding Appl Licecycle Mgmt
           AppName: DemoApp
           DepGroupName: DemoAppInstance
           search by tags: Dev
-          Deployment Config: OneatATime (rolling deployment)
+          Deployment Config: AllAtOnce
           ServiceRole: CDServiceRole
 
     Setup a two stage Apps pipeline to deploy the App
@@ -239,9 +240,11 @@ IV. Understanding Appl Licecycle Mgmt
               mstr branch
            - Buiild Provider: Jenkins
            - Project name: BuildProject
+             Server URL: <servers IP>
            - Deplymt Provider: AWS CodeDeploy
            App Name: DemoApp
            Dep Group: DemoAppinstances
+           Role name: AWS-CodePipeline-Service (created previously)
            CreatePL
 
 
