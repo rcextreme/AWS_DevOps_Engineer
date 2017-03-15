@@ -1,18 +1,212 @@
-This document contains my notes from the AWS_DevOps_Engineer course in Pluralsight taught by Mike Pfeiffer.
+3/10/17    4h16m
 
-I. Course Overview
+I Overview
+  Prerequisites and studying
+  Principles, practices and benefits
+  AWS CloudFormation
+  AWS ElasticBeanstalk
+  Opsworks
+  script tasks with the AWS CLI
 
-II. Series Introduction
+II Series Introduction
 
-III. Implementing Continuous Integration and Continuous Delivery
+II.I Getting Started
+  Series Introductions
+  -Continuous Delivery and Automation
+  -Monitoring, Metrics and Logging
+  -Security, Governance and Validation
+  -HA and Elasticity
 
-IV. Understanding Application Lifecycle Management 52m
+  What we'll cover
+  -Continuous integration and continuous delivery
+  -Application lifecycle mngmt
+  -automating infrastructure with cloudformation
+  -Deploying Apps with Elastic Beanstalk
+  -Creating Stacks and Managing Config with Opsworks
+  -Scripting and Automating Operational Tasks
 
-IV.I Introduction
+II.II  Prerequisites for the Exam
+   -Have an associate cert
+   -Have experience with scripting and programming
 
-IV.II Version Control
+II.III Exploring the Exam Blueprint
+   -How to access the blueprint
+   -Go over the blueprint
 
-IV.III Getting Started with CodeDeploy and CodePipeline
+II.IV Tips for Studying for the Exam
+  -AWS Sample questions
+  -AWS Practice exam
+  -Read FAQs
 
-IV.IV Adding a Test Stage to the Pipeline
+II.V Keeping up with updates
+  - AWS official Blog
+  - Follow #AWS on twitter
+  - reddit
 
+
+III. Integration and Continuous Delivery
+
+  III.I Introduction
+    -Pipelines to commit code to prod
+
+  III.II Understanding the DevOps MindSet
+
+    Understanding the DevOps Mindset
+    - cultural change, paradigm shift, collaboration
+    - improvement in software delivery
+    - eliminating silos between devs and IT Ops
+    - Dev practices applied to Infrastructure
+    - Dev Ops Principles
+       -work as one team
+       -agility
+       -automation
+       -test & version code
+       -infrastructure code
+
+  III.III Continuous Integration & Continuous Deployment
+  - CI stops short of pushing changes to prod while cd does push to prod
+  - Automate everything.  Pipeline gets triggered by a code submit
+  - Define infrastructure as code
+  - Store app and infras code in version control
+  - Unify the app and the infras.
+  - perform end-to-end automated testing
+
+III.IV  Infrastructure as Code
+  - Repeatability: Humans make mistakes
+  - Agility: Roll forward or back easily
+  - Auditing & Security: paper trail and permissions
+
+III.V  Automation and Configuration Management Tools
+  - provisioning: cloudformation, opsworks, beanstalk
+  - declarative vs imperative scripts: loosely coupled to implementation
+  - chef, puppet, saltstack, ansible, DSC
+
+ III.VI Summary
+ - Collaboration
+ - Automation
+ - Versioning app and infrastructure code
+ - End-to-end automated tests
+
+
+IV. Understanding Appl Licecycle Mgmt
+
+  IV.I Intro
+    managing the lifecycle of an app running on AWS
+    using Git
+    continuous delivery pipeline with AWS and Jenkins
+    bootstrapping instances
+    building custom AMI
+    blue-green app release pattern
+
+
+  IV.II Version Control
+    reference  http://docs.aws.amazon.com/powershell/latest/userguide/specifying-your-aws-credentials.html
+    Set up AWS Code Commit
+    -view AWS-> CodeCommit -> UserGuide -> SetUp
+    -Install AWS Tools for Windows Powershell
+    -Install git for windows
+    -Unselect Git Cred mngr. because I'm  going to use a cred manager
+     that comes with the AWS tools so I can authenticate to AWS CodeCommit
+    -Create a codecommit user in your AWS account and save the credentials
+       Add CodeCommit access policy to this user
+    -Add credentials to powershell
+      > Set-AWSCredentials -AccessKey <key_id> -SecretKey <key_value> -StoreAs codecommit
+      > cd 'C:\Program Files (x86)\AWS Tools\CodeCommit'
+      > .\git-credential-AWSS4.exe -p codecommit
+
+    -Create a repo in CodeCommit
+    -Clone the repo in PowerShell
+       git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/MyRepo
+
+    -Check in a file
+      > git config user.email 'raf@example.com'
+      > git config user.name 'raf'
+      > notepad index.html
+      > git status
+
+      > git add .\index.html
+      > git status
+      > git commit -m 'initil commint'
+      > git push origin master
+      > git log
+      > git diff <commit_id>
+      > get-history   <view history in powershell>
+      > Invoke-History 25
+
+
+
+  IV.III Getting started with CodeDeploy and CodePipeline
+     Project's repo  https://github.com/mikepfeiffer/aws-codedeploy-jenkins-linux
+
+     Create  IAM roles :
+      CDInstanceRole -> service role: EC2  -> AmazonEC2RoleForCodeDeploy
+      CDServiceRole -> servicerole: CodeDeploy -> AWSCodeDeployRole
+
+   Deploy two ec2 instances
+        bootstrap:
+        cd /home/ec2-user/
+        aws s3 cp 's3://aws-codedeploy-us-east-1/latest/codedeploy-agent.noarch.rpm' . --region us-east-1
+        yum -y install codedeploy-agent.noarch.rpm
+
+    Set up App and Deployment Group in CodeDeploy
+      CodeDeploy -> Custom Deployment
+          AppName: DemoApp
+          DepGroupName: DemoAppInstance
+          search by tags: Dev
+          Deployment Config: OneatATime (rolling deployment)
+          ServiceRole: CDServiceRole
+
+    Setup a two stage Apps pipeline to deploy the App
+        CodePipeline -> New
+           name: pipeline
+           SourceProvider: Github
+           Connect to Github (it'll leverage single sign on if you're signed on already)
+             Select Repo, Branch: master
+             Build Provider: no
+             Dep Provider: AWS Code Deploy
+             App Name: Demo App
+             Depl.Group: DemoAppInstances
+             Create Service Role: AWS-CodePipeline-Service
+
+
+    Deploy tw EC2 instances: T2Micro with CDInstanceRole
+      Add Boostrap script
+
+
+  IV.IV Build a pipeline with  a Build Stage
+    Continuous Integration products
+    -Bamboo from Atlassian
+    -TeamCity from JetBrains
+    -Travis CI
+    -CruiseControl
+    -Jenkins, CodePipeline integrates nicely with this product
+
+    CI servers vs Build Tools
+
+    In this section we'll
+    -Run Jenkins on EC2
+    -Create a new code pipeline with build and test stages
+
+    New Project we'll use: AWS CodeDeploy Jenkins Linux
+    -Rake will generate the index.html file
+
+    Go back into CodePipeline and delete the previous PL
+
+    From Mike's Github account, Download the CloudFormation template to install Jenkins on an EC2 instance
+    -Create a CloudFormation stack using the template
+      -stack name: jenkins
+      -instance type: t2.micro
+      -KeyName:
+      -VPC ID:
+      -VPC subnet
+      -Your IP Range: 0.0.0.0/0
+      - DON'T TAG
+      
+
+
+
+
+  IV.V Adding a Test Stage to the Pipeline
+  IV.VI Bootstrapping and Building Images
+  IV.V Blue-green deployments
+  IV.VI Module Summary
