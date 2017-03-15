@@ -1,1 +1,18 @@
+This document contains my notes from the AWS_DevOps_Engineer course in Pluralsight taught by Mike Pfeiffer.
+
+I. Course Overview
+
+II. Series Introduction
+
+III. Implementing Continuous Integration and Continuous Delivery
+
+IV. Understanding Application Lifecycle Management 52m
+
+IV.I Introduction
+
+IV.II Version Control
+
+IV.III Getting Started with CodeDeploy and CodePipeline
+
+IV.IV Adding a Test Stage to the Pipeline
 
