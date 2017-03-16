@@ -176,6 +176,7 @@ IV. Understanding Appl Licecycle Mgmt
 
 
   IV.IV Build a pipeline with  a Build Stage
+     I think this video is basically doing this tutorial:  http://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html
     Continuous Integration products
     -Bamboo from Atlassian
     -TeamCity from JetBrains
@@ -238,8 +239,12 @@ IV. Understanding Appl Licecycle Mgmt
            - Repository: GitHub -> Connect
               select repo
               mstr branch
-           - Buiild Provider: Jenkins
-           - Project name: BuildProject
+           - Build
+               http://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html
+               http://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html?icmpid=docs_acp_console#tutorials-four-stage-pipeline-prerequisites
+               
+              -Buiild Provider: Add Jenkins
+              - Project name: BuildProject
              Server URL: <servers IP>
            - Deplymt Provider: AWS CodeDeploy
            App Name: DemoApp
