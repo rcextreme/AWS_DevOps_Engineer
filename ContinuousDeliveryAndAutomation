@@ -222,8 +222,7 @@ IV. Understanding Appl Licecycle Mgmt
        
        - Dashboard -> New Item -> 
             Name: Build Project
-            Freestyle project
-            oK
+            Freestyle project ->  oK
             
             Execute Concurrent builds if necessary
             Source Code Mngt: AWS CodePipeline
