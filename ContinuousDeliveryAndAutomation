@@ -246,8 +246,9 @@ IV. Understanding Appl Licecycle Mgmt
                http://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html?icmpid=docs_acp_console#tutorials-four-stage-pipeline-prerequisites
                
               -Buiild Provider: Add Jenkins
-              - Project name: BuildProject
-             Server URL: <servers IP>
+                - Server URL: <servers IP>                
+                - Project name: BuildProject
+
            - Deplymt Provider: AWS CodeDeploy
            App Name: DemoApp
            Dep Group: DemoAppinstances
