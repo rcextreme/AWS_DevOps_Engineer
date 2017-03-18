@@ -234,7 +234,7 @@ IV. Understanding Appl Licecycle Mgmt
             Schedule: * * * * *
             Build:  
               Execute Shell: Command = rake
-            Post-Buil Actions: AWS CodePipeline Publisher
+              Post-Buil Actions: AWS CodePipeline Publisher
          
         - Connect to AWS CodePipelin & Create New PL
            - Name: JenkinsPL
