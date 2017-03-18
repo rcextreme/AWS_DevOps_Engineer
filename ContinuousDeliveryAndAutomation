@@ -178,8 +178,11 @@ IV. Understanding Appl Licecycle Mgmt
       Add Boostrap script
 
 
+
   IV.IV Build a pipeline with  a Build Stage
-     I think this video is basically doing this tutorial:  http://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html
+     This video implements this tutorial:  
+                 http://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html
+
     Continuous Integration products
     -Bamboo from Atlassian
     -TeamCity from JetBrains
@@ -200,7 +203,8 @@ IV. Understanding Appl Licecycle Mgmt
 
     From Mike's Github account, Download the CloudFormation template to install Jenkins on an EC2 instance
    
-    Open AWS and Create a CloudFormation stack using the template
+    Build the Jenkis server using the provided CloudFormation template
+      AWS -> CloudFormation
       -stack name: jenkins
       -instance type: t2.micro
       -KeyName:
@@ -209,7 +213,7 @@ IV. Understanding Appl Licecycle Mgmt
       -Your IP Range: 0.0.0.0/0
       - DON'T TAG
       
-      - Once build complete, Connect to URL of Jenkins server and proceed to secure it
+      Once build complete, Connect to URL of Jenkins server and configure it
         -Get password from server: cat /var/lib/jenkins/secrets/initialAdminPassword
         -Manage Jenkins -> Configure Global Security -> Enable Security
         - Jenkins own user database, Allow users to sign up
@@ -220,7 +224,8 @@ IV. Understanding Appl Licecycle Mgmt
              name: PATH
              Value: $PATH:/usr/local/bin
        
-       - Dashboard -> New Item -> 
+      - Create a new project in Jenkins 
+            Jenkins -> Dashboard -> New Item -> 
             Name: Build Project
             Freestyle project ->  oK
             
@@ -228,31 +233,38 @@ IV. Understanding Appl Licecycle Mgmt
             Source Code Mngt: AWS CodePipeline
             Region:
             Category: build
-            Provider: Jenkins  (this must match the provider specified in the 
+            Provider: Jenkins  (this must match the provider you'll create in the Pipeline)
             Build Triggers:  Poll SCM
             Schedule: * * * * *
             Build:  
               Execute Shell: Command = rake
               Post-Buil Actions: AWS CodePipeline Publisher
          
-        - Connect to AWS CodePipelin & Create New PL
-           - Name: JenkinsPL
-           - Source Provider: GitHub
-           - Repository: GitHub -> Connect
-              select repo
-              mstr branch
-           - Build
-               http://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html
-               http://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html?icmpid=docs_acp_console#tutorials-four-stage-pipeline-prerequisites
-               
-              -Buiild Provider: Add Jenkins
+        - Connect to AWS CodePipeline & Create New PL
+           Name: JenkinsPL
+           
+           Source
+               Source Provider: GitHub
+               Repository: GitHub -> Connect
+                 select repo
+                 mstr branch
+               output artifact: MyApp
+           
+           Build            
+               Build Provider: Add Jenkins
                 - Server URL: <servers IP>                
-                - Project name: BuildProject
-
-           - Deplymt Provider: AWS CodeDeploy
-           App Name: DemoApp
-           Dep Group: DemoAppinstances
-           Role name: AWS-CodePipeline-Service (created previously)
+                - Project name: BuildProject   <this is the jenkin's project name>
+               Input Artifact: MyApp
+               Ouput Artifact: MyAppBuild
+           
+           Deployment
+             Action Category: Deploy
+             Deplymt Provider: AWS CodeDeploy
+             App Name: DemoApp    (This is the CodeDeploy App name)
+             Dep Group: DemoAppinstances   ( This is the App Instance name of the CodeDeploy App)
+             Role name: AWS-CodePipeline-Service (created previously)
+             Input artifact: MyAppBuild
+           
            CreatePL
 
   
