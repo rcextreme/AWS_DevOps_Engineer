@@ -294,11 +294,36 @@ IV. Understanding Appl Licecycle Mgmt
            MyAppBuild
     
     - Save changes
-    
-    
-    
-     
+       
+      
      
   IV.VI Bootstrapping and Building Images
+  
+      -You want your instances to come online quickly during deployments.
+      
+      -Bare OS image vs an Image with everything baked into it
+      
+      -partially configured AMI is best of both worlds
+      
+      -How to create an AMI of a running instance
+      
+      -How to launch an instance from personal AMI
+      
+      - Netflix's animator let's you create an AMI on a volume directly, without needing a running instance
+            https://github.com/taruntmr/aminator   open source
+      
+  
+
+  
   IV.V Blue-green deployments
+     -Diagram of an blue-green deployment using RT53 and ELB
+        Use weighted routing
+        Canary analysis
+     -DNS record TTL. should be low
+     -Elastic Beanstalk and Opsworks have features for Blue/Green deployments
+     
+     
+  
   IV.VI Module Summary
+  
+  
