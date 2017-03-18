@@ -255,9 +255,38 @@ IV. Understanding Appl Licecycle Mgmt
            Role name: AWS-CodePipeline-Service (created previously)
            CreatePL
 
-
+  
 
   IV.V Adding a Test Stage to the Pipeline
+    - See the project in Github and notice the Rake file includes a test section that calls a Ruby script
+    
+    - Add a new project in Jenkins for the test stage
+        Name: TestProject    Freestyle project
+        Execute concurrent builds if necessary
+        Source Code Mngt: AWS CodePipeline
+        Category: Test
+        Provider: Jenkins (same as previou s project)
+        Build triggers: Poll SCM     * * * * *
+        Build: Execute Shell
+           Command:  TEST_IP_ADDRESS=<IP_OF_Instance> rake test
+        Post-buil Actions:  AWS CodePipeline Publisher
+              don't add an action. this is just to signal to codepipeline when it's done
+        
+    - Add a test stage to the Codepipeline
+        Name: test
+        Action Categorty: Test
+        Anction Name: JenkinsTest
+        Test provider: Jenkis
+        ProjectName: TestProject
+        Input artifacts:
+           MyAppBuild
+    
+    - Save changes
+    
+    
+    
+     
+     
   IV.VI Bootstrapping and Building Images
   IV.V Blue-green deployments
   IV.VI Module Summary
