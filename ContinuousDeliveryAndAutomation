@@ -145,6 +145,7 @@ IV. Understanding Appl Licecycle Mgmt
       CDServiceRole -> servicerole: CodeDeploy -> AWSCodeDeployRole
 
    Deploy two ec2 instances
+        assign the CDInstanceRole
         bootstrap:
         cd /home/ec2-user/
         aws s3 cp 's3://aws-codedeploy-us-east-1/latest/codedeploy-agent.noarch.rpm' . --region us-east-1
