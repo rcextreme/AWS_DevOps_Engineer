@@ -228,7 +228,7 @@ IV. Understanding Appl Licecycle Mgmt
             Source Code Mngt: AWS CodePipeline
             Region:
             Category: build
-            Provider: Jenkins
+            Provider: Jenkins  (this must match the provider specified in the 
             Build Triggers:  Poll SCM
             Schedule: * * * * *
             Build:  
