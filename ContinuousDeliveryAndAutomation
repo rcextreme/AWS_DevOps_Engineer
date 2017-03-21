@@ -323,7 +323,58 @@ IV. Understanding Appl Licecycle Mgmt
      -Elastic Beanstalk and Opsworks have features for Blue/Green deployments
      
      
+  V  Automating Infrastructure with CloudFormation
+   
+  V.I Introduction
+      We'll learn how to create CF templates using JSON
+      
+      
+  V.II CloudFormation Key Concepts
+      JSON - CF templates are written in JSON
+      Resource Relationships - You don't need to worry about dependencies
+      Feedback -
+         CF will give you detailed status of a build
+         CF will roll back the entire deployment if for some reason one of the resources fails to get created
+      Reusable - Templates are reusable
+      Interactive - You can define your templates to be interactive if you like
+      Automated
+           
   
-  IV.VI Module Summary
-  
-  
+  V.III Understanding JSON
+      Json has become more popular than XML
+       The official JSON doc site:  http://www.json.org/
+
+       You can find a JSON editor and a formatter by doing a google search
+          www.cleancss.com/json-editor
+          jsonformatter.curiousconcept.com
+          
+       JSON is made up of key-value pairs
+       Example of a JSON doc
+         {
+            "name": "Michele",
+            "shirt_color": "blue",
+            "laptops": [
+                {
+                    "brand": "Lenovo",
+                    "operating_system": "Ubuntu"
+                },
+                {
+                    "brand": "Apple",
+                    "operating_system": "OSX"
+                }
+            ],
+            "has_a_dog": false,
+            "items_on_desk": ["mug", "pen", "monitor"]
+          }
+          
+          
+          
+  V.IV  Creating a Basic Template
+        You can use a text editor to create your template.
+        Or you can use an IDE like Eclipse for MAC and download the AWS SDK for it.
+        
+        
+        
+        
+        
+  V.V   Adding Parameters, Mappings and Outputs
