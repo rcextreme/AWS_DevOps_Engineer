@@ -373,6 +373,9 @@ IV. Understanding Appl Licecycle Mgmt
         You can use a text editor to create your template.
         Or you can use an IDE like Eclipse for MAC and download the AWS SDK for it.
         
+        To get started: https://aws.amazon.com/cloudformation/details/
+        
+        Open Aws -> cloudformation -> Design Template
         
         
         
