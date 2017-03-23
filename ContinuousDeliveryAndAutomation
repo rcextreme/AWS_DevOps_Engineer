@@ -217,8 +217,9 @@ IV. Understanding Appl Licecycle Mgmt
         -Get password from server: cat /var/lib/jenkins/secrets/initialAdminPassword
         -Manage Jenkins -> Configure Global Security -> Enable Security
         - Jenkins own user database, Allow users to sign up
-        - Manage pluggins -> Installed
-          -AWS CodePipeline
+        - Manage pluggins -> 
+          -Install : AWS CodePipeline
+          -restart jenkins app server
         - Dashboard -> Manage Jenkins -> Configure System
           -Configure Env variables so Jenkins can find the Rake utility
              name: PATH
