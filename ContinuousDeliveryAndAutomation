@@ -220,8 +220,8 @@ IV. Understanding Appl Licecycle Mgmt
         - Manage pluggins -> 
           -Install : AWS CodePipeline
           -restart jenkins app server
-        - Dashboard -> Manage Jenkins -> Configure System
-          -Configure Env variables so Jenkins can find the Rake utility
+        - Dashboard -> Manage Jenkins -> Configure System -> Global Properties -> Environment Variables
+          -Add Env variables so Jenkins can find the Rake utility
              name: PATH
              Value: $PATH:/usr/local/bin
        
@@ -240,6 +240,7 @@ IV. Understanding Appl Licecycle Mgmt
             Build:  
               Execute Shell: Command = rake
               Post-Buil Actions: AWS CodePipeline Publisher
+                 Output Locations -> Add   (leave blank for codedeploy to place in s3)
          
         - Connect to AWS CodePipeline & Create New PL
            Name: JenkinsPL
@@ -253,6 +254,7 @@ IV. Understanding Appl Licecycle Mgmt
            
            Build            
                Build Provider: Add Jenkins
+                -Proivder name     <this must match that in the Jenkins project)
                 - Server URL: <servers IP>                
                 - Project name: BuildProject   <this is the jenkin's project name>
                Input Artifact: MyApp
