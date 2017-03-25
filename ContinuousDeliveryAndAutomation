@@ -425,4 +425,8 @@ V.VI  Bootstrapping Applications
           
           
   
-V.VII Creation Po
+V.VII Waiting on Instances
+      This section focuses on how to notify cloudformation that the Bootstratp tasks on the stack have completed.
+      There are two ways to do this.  Using
+         -WaitCondition    this is the old way
+         -CreationPolicy with Timeout    this is the newer way
