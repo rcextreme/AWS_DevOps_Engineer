@@ -1,0 +1,15 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description" : "Single Instance",
+  "Resources" : {
+    "EC2Instance": {
+        "Type": "AWS::EC2::Instance",
+        "Properties": {
+          "ImageId": "ami-0b33d91d",
+          "InstanceType": "t2.micro",
+          "SecurityGroupIds": [ "sg-b99879c5" ],
+          "KeyName": "NV_RC"
+        }
+      }
+    }
+}
