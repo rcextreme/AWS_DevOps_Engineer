@@ -378,7 +378,8 @@ IV. Understanding Appl Licecycle Mgmt
           
   V.IV  Creating a Basic Template
         You can use a text editor to create your template.
-        Or you can use an IDE like Eclipse for MAC and download the AWS SDK for it.
+        Or you can use an IDE like Eclipse for MAC.  You'll want to install the 
+           AWS Tookit for Eclipse to give you intelisense.
         
         To get started: https://aws.amazon.com/cloudformation/details/
         
@@ -395,3 +396,25 @@ IV. Understanding Appl Licecycle Mgmt
         
         
   V.V   Adding Parameters, Mappings and Outputs
+          In this section we'll update our template to use Parameters and Mapping
+          
+          You add parameters to the template to avoid writing sensitive data such as passwords.
+          It's pretty cool because this will cause a Form to Appear in CFormation where you can enter the value.
+          
+          Also you can add mappings as way to obtain values that depend on various things.  Mappings are sort of hash.
+          
+          We Added the following parameters to the template
+             -KeyName
+             -InstanceType
+             -SSHLocation
+          
+          Also add a mapping function to determine the image ID.  We added two maps
+             -AWSInstanceType2Arch
+             -AWSRegionArch2AMI
+          
+          The new template can be found here: 
+                https://github.com/rcextreme/AWS_DevOps_Engineer/blob/master/Cloud_Form_Templ_%233_MapsNOutputs
+                
+             
+          
+  
