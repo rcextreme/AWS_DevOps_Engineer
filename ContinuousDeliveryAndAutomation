@@ -326,6 +326,9 @@ IV. Understanding Appl Licecycle Mgmt
      -Elastic Beanstalk and Opsworks have features for Blue/Green deployments
      
      
+     
+     
+     
   V  Automating Infrastructure with CloudFormation
      Download the official user guide for reference: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-ug.pdf
    
@@ -380,6 +383,13 @@ IV. Understanding Appl Licecycle Mgmt
         To get started: https://aws.amazon.com/cloudformation/details/
         
         Open Aws -> cloudformation -> Design Template
+          or
+        http://jsoneditoronline.org
+        
+        Create a template to build a single EC2 instance and a Sec Group.  
+           See it here: https://github.com/rcextreme/AWS_DevOps_Engineer/blob/master/Cloud_Form_%232_EC2wSecGrp
+        
+        Login to AWS and Launch a stack with this template
         
         
         
