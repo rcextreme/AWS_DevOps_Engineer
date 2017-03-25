@@ -416,9 +416,11 @@ IV. Understanding Appl Licecycle Mgmt
                 https://github.com/rcextreme/AWS_DevOps_Engineer/blob/master/Cloud_Form_Templ_%233_MapsNOutputs
                 
              
-V.VI  Bootstrapping Applications 
+V.VI  Bootstrapping Applications (update a stack)
         This section shows how to perform Bootstrap actions using a resources Metadata in  Conjunction with User data.
-        This leverages AWS::CloudFormation::Init  and cfn-hup.
+        This leverages AWS::CloudFormation::Init  and cfn-hup.    cfn-hup runs as a daemon and it can sense when metadata has been 
+        changed and it will automatically update the stack.
+        
         
         The template is found here:
           https://github.com/rcextreme/AWS_DevOps_Engineer/blob/master/Cloud_Form_Templ_%234_CreationPolicy
