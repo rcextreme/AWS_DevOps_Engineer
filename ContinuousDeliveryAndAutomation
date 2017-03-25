@@ -327,6 +327,7 @@ IV. Understanding Appl Licecycle Mgmt
      
      
   V  Automating Infrastructure with CloudFormation
+     Download the official user guide for reference: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-ug.pdf
    
   V.I Introduction
       We'll learn how to create CF templates using JSON
