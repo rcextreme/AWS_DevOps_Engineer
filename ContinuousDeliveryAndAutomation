@@ -432,3 +432,55 @@ V.VII Waiting on Instances
       There are two ways to do this.  Using
          -WaitCondition    this is the old way
          -CreationPolicy with Timeout    this is the newer way
+
+
+V.VIII   DependsOn and Conditional Resources
+     
+     DependsOn - You use Depends resource when you have dependecies, say an EC2 instance depends on a DB
+     Conditions - These are conditions or tests you can write in your template to take action if an action.
+     
+     You can use the example in the cfn user guide.  It creates a CreateProdResources condition.  Then the MountPoint resource
+     will be createed in the conditions is met, ie the EnvType parameter was set to prod.
+     
+     ....
+     ....
+     
+     "Parameters" : {
+     "EnvType" : {
+     "Description" : "Environment type.",
+     "Default" : "test",
+     "Type" : "String",
+     "AllowedValues" : ["prod", "test"],
+     "ConstraintDescription" : "must specify prod or test."
+     }
+     },
+
+     "Conditions" : {
+     "CreateProdResources" : {"Fn::Equals" : [{"Ref" : "EnvType"}, "prod"]}
+     },
+
+     "Resources" : {
+     "EC2Instance" : {
+    API Version 2010-05-15
+    146
+    AWS CloudFormation User Guide
+    Conditions
+     "Type" : "AWS::EC2::Instance",
+     "Properties" : {
+     "ImageId" : { "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "AMI" ]}
+     }
+     },
+
+     "MountPoint" : {
+     "Type" : "AWS::EC2::VolumeAttachment",
+     "Condition" : "CreateProdResources",
+     "Properties" : {
+     "InstanceId" : { "Ref" : "EC2Instance" },
+     "VolumeId" : { "Ref" : "NewVolume" },
+     "Device" : "/dev/sdh"
+     }
+     },
+
+     ...
+     ...
+     
