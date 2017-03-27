@@ -421,6 +421,9 @@ V.VI  Bootstrapping Applications (update a stack)
         This leverages AWS::CloudFormation::Init  and cfn-hup.    cfn-hup runs as a daemon and it can sense when metadata has been 
         changed and it will automatically update the stack.
         
+        To update a stack you make the required changees to the template. Then in the CF GUI you select the stack, select modify
+        and upload the new template
+        
         
         The template is found here:
           https://github.com/rcextreme/AWS_DevOps_Engineer/blob/master/Cloud_Form_Templ_%234_CreationPolicy
@@ -442,45 +445,70 @@ V.VIII   DependsOn and Conditional Resources
      You can use the example in the cfn user guide.  It creates a CreateProdResources condition.  Then the MountPoint resource
      will be createed in the conditions is met, ie the EnvType parameter was set to prod.
      
-     ....
-     ....
+         ....
+         ....
+
+         "Parameters" : {
+         "EnvType" : {
+         "Description" : "Environment type.",
+         "Default" : "test",
+         "Type" : "String",
+         "AllowedValues" : ["prod", "test"],
+         "ConstraintDescription" : "must specify prod or test."
+         }
+         },
+
+         "Conditions" : {
+         "CreateProdResources" : {"Fn::Equals" : [{"Ref" : "EnvType"}, "prod"]}
+         },
+
+         "Resources" : {
+         "EC2Instance" : {
+        API Version 2010-05-15
+        146
+        AWS CloudFormation User Guide
+        Conditions
+         "Type" : "AWS::EC2::Instance",
+         "Properties" : {
+         "ImageId" : { "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "AMI" ]}
+         }
+         },
+
+         "MountPoint" : {
+         "Type" : "AWS::EC2::VolumeAttachment",
+         "Condition" : "CreateProdResources",
+         "Properties" : {
+         "InstanceId" : { "Ref" : "EC2Instance" },
+         "VolumeId" : { "Ref" : "NewVolume" },
+         "Device" : "/dev/sdh"
+         }
+         },
+
+         ...
+         ...
      
-     "Parameters" : {
-     "EnvType" : {
-     "Description" : "Environment type.",
-     "Default" : "test",
-     "Type" : "String",
-     "AllowedValues" : ["prod", "test"],
-     "ConstraintDescription" : "must specify prod or test."
-     }
-     },
 
-     "Conditions" : {
-     "CreateProdResources" : {"Fn::Equals" : [{"Ref" : "EnvType"}, "prod"]}
-     },
-
-     "Resources" : {
-     "EC2Instance" : {
-    API Version 2010-05-15
-    146
-    AWS CloudFormation User Guide
-    Conditions
-     "Type" : "AWS::EC2::Instance",
-     "Properties" : {
-     "ImageId" : { "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "AMI" ]}
-     }
-     },
-
-     "MountPoint" : {
-     "Type" : "AWS::EC2::VolumeAttachment",
-     "Condition" : "CreateProdResources",
-     "Properties" : {
-     "InstanceId" : { "Ref" : "EC2Instance" },
-     "VolumeId" : { "Ref" : "NewVolume" },
-     "Device" : "/dev/sdh"
-     }
-     },
-
-     ...
-     ...
-     
+V.IX  Troubleshooting Failed Stacks
+      
+      Typically CF destroys all resources if there's an error
+      To troubleshoot disable 'Rollback on failure' from the Advanced section.
+      
+      Then read logs in /var/log (linux)
+ 
+ 
+ 
+ V.X  Creating Nested Templates
+       When you're building large deployments the best practice is to break up your Templates intead of having a huge one.
+       Then you create a master template from which you call the smaller templates
+       
+       Use the AWS::CloudFormation::Stack  resource to achieve this as described in the CFN User Guide.
+       The video does not build out a template 
+       
+       An example from the course on how it's used
+       https://github.com/rcextreme/AWS_DevOps_Engineer/tree/master
+       
+       I found this example:
+       https://github.com/wjordan/aws-codepipeline-nested-stack
+  
+  
+      
