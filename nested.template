@@ -1,0 +1,57 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Description":  "How to use nested templates",
+
+  "Parameters":  {
+     "KeyName": ....
+     "DBName": ...
+     etc.
+  },
+
+  "Resources" :{
+     "VPCStack": {
+        "Type": "AWS::CloudFormation::Stack",
+        "Properties":{
+           "TemplateURL": "URL...",
+           "Parameters": {
+              "KeyPairName": { "Ref": "KeyName"},
+              etc...
+           }
+        }
+     },
+
+     "DatabaseStack":{
+         "Type": "AWS::CloudFormation::Stack",
+         "Properties":{
+            "TemplateURL": "URL...",
+            "Parameters": {
+               "KeyPairName": { "Ref": "KeyName"},
+               "SubnetID" : {
+                  "Fn::GetAtt" : [
+                     "VPCStack",
+                     "Outputs.SubnetID"
+                  ]
+               }
+            }
+          }
+     },
+
+     "WebServerStack":{
+         "Type": "AWS::CloudFormation::Stack",
+         "Properties":{
+            "TemplateURL": "URL...",
+            "Parameters": {
+               "KeyPairName": { "Ref": "KeyName"},
+               "SubnetID" : {
+                  "Fn::GetAtt" : [
+                     "VPCStack",
+                     "Outputs.SubnetID"
+                  ]
+               }
+            }
+          }
+     }
+
+
+}
