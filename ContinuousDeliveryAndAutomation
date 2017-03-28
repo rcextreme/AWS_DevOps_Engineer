@@ -511,4 +511,25 @@ V.IX  Troubleshooting Failed Stacks
        https://github.com/wjordan/aws-codepipeline-nested-stack
   
   
+  V.XI  Custom resources
+       For the exam you just need to know what custom resources are and why you'd use them
+       -If you need to provision a resource that's not supported by CloudFormation natively
+       -You can implement either a Lambda-backed on SNS-backed custom resource
+       
+       Example uses:
+       -A stack needs to create a subscription to a third pary (google, facebook) for authentication
+       -Sometimes it takes AWS a few months to get CloudFormation support for a new AWS service.  You can create a custom 
+         resource till native support is released
+ 
+ 
+ V.XI CloufFormation Best Practices
+    - Don't embed credentials
+    - Validate templates
+    - Manage Everything from CloudFormation, including updates
+    - Use constraints & AWS specific parameter types
+    - Use nested stacks to reduce code duplication
+    - use code review and store templates and version control
+    
+    
+  
       
