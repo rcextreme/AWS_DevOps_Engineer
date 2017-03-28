@@ -532,4 +532,34 @@ V.IX  Troubleshooting Failed Stacks
     
     
   
-      
+ V.XII Summary
+    Template authoring
+    Bootstrapping
+    Nested templates
+    Troubleshooting failed stacks
+    Best Practices
+    
+
+VI  Deploying Apps with Elastic Beanstalk
+
+VI.I Elastic Beanstalk Key Concepts
+
+     Beanstalk is a service that makes it easy to quickly deploy and manage apps and it takes 
+     away the need to have a deep understanding about all the vaious infrastructure comonents 
+     that go along with deploying a scaleable web app.
+     
+     
+    -Beanstalk is a Platform-as-a-Service (Pass)
+    -Service for deploying and scaling web apps and services
+    -Is intended to provide Autoscaling, load balancing & health monitoring
+    -Platform management and code deployment
+    
+    Notes:
+    - you have access to the underyling resourcess (ec2 instances, etc) as opposed to RDS where you don't have root access
+    - You can choose from a number of preconfigured platform like node.js or Ruby or Python or Java or .net.
+    - Beanstalk integrates with cod pipeline
+  
+
+    
+   
+   
