@@ -542,7 +542,9 @@ V.IX  Troubleshooting Failed Stacks
 
 VI  Deploying Apps with Elastic Beanstalk
 
-VI.I Elastic Beanstalk Key Concepts
+VI.I Intro
+
+VI.II Elastic Beanstalk Key Concepts
 
      Beanstalk is a service that makes it easy to quickly deploy and manage apps and it takes 
      away the need to have a deep understanding about all the vaious infrastructure comonents 
@@ -559,7 +561,31 @@ VI.I Elastic Beanstalk Key Concepts
     - You can choose from a number of preconfigured platform like node.js or Ruby or Python or Java or .net.
     - Beanstalk integrates with cod pipeline
   
-
+  
+VI.III Deploying a Web App with Beanstalk
+  
+  Exercise:
+    Beanstalk -> Create New Application
+      Name: Demo
+      Create Web Server
+      Predefined Configuration: PHP
+      Environment Type: Load Balancing Auto Scaling
+      Source: Sample Application
+      Env name: Demo Env
+      Details: instance type, ec2 key pair, email address,  rolling update type
+    Beanstalk will build a Cloudformation template from these selections and bring up a stack
+    
+    Once App is deployed you can:
+      -release an update, rolling upgrade
+      -view the web page
+      -edit the setting: scaling, instances, notification
+      -view monitoring, logs, alarms
+ 
+VI.IV Working with the EB CLI
+     
+      
+    
+   
     
    
    
