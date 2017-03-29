@@ -580,12 +580,17 @@ VI.III Deploying a Web App with Beanstalk
       -view the web page
       -edit the setting: scaling, instances, notification
       -view monitoring, logs, alarms
+      
+      
  
 VI.IV Working with the EB CLI
-     
-      
+    Let's install the Elastic Load Balancer CLI.  I did this on a Centos7 box.  I couldn't get it to work on Ubuntu
     
-   
+    AWS Console -> EB ->  Installing the EBS CLI
     
-   
-   
+    $ sudo yum install python-pip
+    $ sudo yum install python-devel
+    $ curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+    $ sudo python get-pip.py
+    $ sudo pip install --upgrade --user awsebcli
+
