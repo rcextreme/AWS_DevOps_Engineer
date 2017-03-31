@@ -584,7 +584,7 @@ VI.III Deploying a Web App with Beanstalk
       
  
 VI.IV Working with the EB CLI
-    Let's install the Elastic Load Balancer CLI.  I did this on a Centos7 box.  I couldn't get it to work on Ubuntu
+    Let's install the Elastic Beanstalk CLI.  I did this on a Centos7 box.  I couldn't get it to work on Ubuntu
     
     AWS Console -> EB ->  Installing the EBS CLI
     
@@ -594,3 +594,98 @@ VI.IV Working with the EB CLI
     $ sudo python get-pip.py
     $ sudo pip install --upgrade --user awsebcli
 
+     The instructor already has his application directory.  I think it came from aws user guide
+     initialize your application directory
+     $ eb init
+       < provide answer to interactive menu >
+       This will generate a .elasticbeanstalk dir
+     
+     Create an environment for the application
+     $ eb create
+       < this creates a zip archive of contents of folder and uploads it to s3 and deploy the app>
+     $ eb open
+       < this will open the app in a your default web browser >
+     
+     make a change to your app and deploy it
+     $ < edit the index.php>
+     $ eb deploy      to deploy latest code changes
+       
+
+
+VI.V  Advanced Environment Customization
+     reference:  http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions.html
+     -Courese is using a demo app call 'php-demo-app'
+       cd php-demoo-app
+     -You have to create a subfolder called '.ebextension' where you'll place the customization yaml files
+     -Just look over the content of the yaml files.  They're similar to Cloud Formation
+
+
+
+VI.VI Rolling & Blue-Green Deployments     
+     For this section you need to have your EB app deployed.
+     
+     AWS -> EB -> [ select your app ] -> Configuration 
+       Updates and Deployment -> select gear_icon
+       
+     Here you can see options for Rolling Deployment and ROlling Config Updates
+          example of aa Config Update change is a different instance type or ssh keypair
+     
+     How to do a blue green deployment
+        select the App in EB
+        Then select Actions->Clone environment
+        
+        Meanwhile the is running, you can make a change to the index.php in your App
+        create a zip archive of your update App dir
+        Now select the v2 App in EB, and select Upload and Deploy to load new App version
+        
+        At this point you have two different App Envs. Go back to the top of you EB App
+        select Swap URLS
+
+
+VI.VII Working with Docker
+        In EB you can deploy Apps of type: Python, PHP, Java, Ruby, IIS,  
+        You can also create your own custom Docker image if your App uses some other framework
+        
+        Docker options
+          Preconfigured containers: Java with Glassfish, etc 
+          Generic: Single Container with Docker, Multicontainer with ECS
+        
+        Use dockerrun.aws.json to use containers in private repos. this file specifies: 
+          -version number
+          - file in S3 used to authenticate to a private repository
+          - Ports to expose on the docker container
+          - volume mapping
+          - logging directory
+       
+       you can run 'docker login' to generate authentication file that gets stored in s3
+       
+       you can use the standard Dockerfile to generate your own docker image
+          reference: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-getting-started.html
+             this deploys 'game 2048' sample web app
+          Remember that you only do this when you don't alread have an image in a private or public repo
+
+          
+VI.VIII Module Summary
+        Things to remember:
+        
+        EB Key Concepts
+          -EB is a PAAS
+          -EB It's buildind CF templates in the background
+          -the platform types that are available through EB: PHP, Java, Go and Node.js, etc
+        Deploying Apps with Beanstalk
+          -Create and App
+          -Build environments within the App
+        Working with the EB CLI
+           - how to deploy an app
+           - cli commands: eb status, eb logs
+        Advanced environment customization
+           -Using the EB extensions foloder
+        Rolling & Blue-green deployments
+           -swapping URLs
+        Working with Docker
+          - dockerrun.aws.json file is to specify images you want to use to build your containers
+          - Dockerfile
+        
+        
+        
+     
