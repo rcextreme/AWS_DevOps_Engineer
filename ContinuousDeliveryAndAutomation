@@ -689,3 +689,92 @@ VI.VIII Module Summary
         
         
      
+VII  Creating Stack and Managing Configuration with OpsWorks
+
+VII.I Opsworks Key Concepts
+       Stack
+       Chef recipes
+       Coookbook repository
+       Chef agent on each client
+
+VII.II Working with Stacks and Layers
+      Create an Opswork stack   (leave this stack for the remainder of this chaper)
+       - Chef 12 stack
+          name: helloworld
+          OS: Ubuntu Linux
+          Repository type: Git
+          Repo URL: demo-chef-recipe
+          Add stack
+          Add a layer
+             name: webserver
+             Add Recipe-> Configure: simple_demo:default
+          Add Instance
+             Add 3 webservers: 
+                webserver1 -> scaling type: 24/7
+                webserver2 -> scaling type: time-based
+                webserver3 -> scaling type: load-based
+                
+             select webserver3 -> Configuration -> show how to enable Load-based autoscaling
+             start webserver1 -> view the app in browser
+         
+         Display how you would deplo an App
+            Opsworks -> your stack -> Apps -> Create an App and deploy
+         
+VII.III Uderstanding Lifecycle events
+      -Layer
+         events:
+              setup
+                 -when a server boots up
+              configure
+                 -when an instance enters/leaves the online state
+                 -when you add or remove an EIP
+                 -when you attach or detach an ELB to a layer
+              Deploy
+              Undeploy
+                 -when you delete an App
+              Shutdown event
+                 -when you tell Opsworks to shutdown an instance
+                 - applies only when inititated shutdown from within Opsworks
+
+VI.IV Working with Cookbooks and Recipes
+       -only high level understanding is required
+       -review the demo-chef-recipe in github
+       
+       how to pass a Json to a chef recipe using Opsworks
+         -Run a recipe in the stack 
+            stack-> Instance-> Run Command -> execute a recipe:simple_demo::custom_json
+               enter the json content into the form
+       how to use data bags   
+        opsworks creates data bags so you can reference to things about your stack
+        -Run a recipe in the stack
+            stack-> Instance-> Run Command -> execute a recipe:simple_demo::data_bags
+       
+       Chef 12 stack vs Chef 11 stack
+          chef 11.10 introduced Berkshelf which is a dependency mngr for Chef cookbooks
+             berkshelf allows you to install Community Cookbooks directory from repos without having
+             to first install them on your own repo
+
+VI.V  Replacing Failed instances with Auto Healing
+       -AH will attempt to bring instances back online if they stop communicating with Opsworks service
+       - AH is enabled at the layer level
+       
+       
+       AH Considerations
+       -AH is used when communication is lost with the instance
+       -Stop instances with Opswors.  If you stop it directoy from EC2, Opsworks will triger auto healing
+       -Use EBS volumes to store persistent data
+       -The same OS is always used for an auto healed instance
+
+VI.VI  Summary
+       stacks
+       layers
+       opsworks vs cloudformation & beanstalk
+       opsworks life-cycle events
+       cookbooks & recipes
+          data bags & custom json
+       replacing failed instnace with Auto Healing
+ 
+       
+            
+
+            
