@@ -689,10 +689,11 @@ VI.VIII Module Summary
         
         
      
-VII  Creating Stack and Managing Configuration with OpsWorks
+VII  Creating Stacks and Managing Configuration with OpsWorks
 
 VII.I Opsworks Key Concepts
-       Stack
+       Stack 
+       Stack Layer
        Chef recipes
        Coookbook repository
        Chef agent on each client
@@ -719,7 +720,8 @@ VII.II Working with Stacks and Layers
          
          Display how you would deplo an App
             Opsworks -> your stack -> Apps -> Create an App and deploy
-         
+
+
 VII.III Uderstanding Lifecycle events
       -Layer
          events:
@@ -735,6 +737,7 @@ VII.III Uderstanding Lifecycle events
               Shutdown event
                  -when you tell Opsworks to shutdown an instance
                  - applies only when inititated shutdown from within Opsworks
+
 
 VI.IV Working with Cookbooks and Recipes
        -only high level understanding is required
@@ -757,15 +760,15 @@ VI.IV Working with Cookbooks and Recipes
 VI.V  Replacing Failed instances with Auto Healing
        -AH will attempt to bring instances back online if they stop communicating with Opsworks service
        - AH is enabled at the layer level
-       
-       
+              
        AH Considerations
        -AH is used when communication is lost with the instance
        -Stop instances with Opswors.  If you stop it directoy from EC2, Opsworks will triger auto healing
        -Use EBS volumes to store persistent data
        -The same OS is always used for an auto healed instance
 
-VI.VI  Summary
+
+VI.VI  Opsworks Summary
        stacks
        layers
        opsworks vs cloudformation & beanstalk
@@ -774,7 +777,26 @@ VI.VI  Summary
           data bags & custom json
        replacing failed instnace with Auto Healing
  
-       
+
+VII   Scripting and Automating Operational Tasks
+
+VII.I Introduction
+      -Create an IAM user with key-based access to AWS.  Grant this user and admin access role.
+      - Install the CLI.  Use AWS instructions
+      - configure the CLI
+        $ aws configure
+        accept the default output format which is JSON.
+      - Run some commands
+        $ aws ec2 describe-regions
+        $ aws ec2 describe-regions  --output table
+        $ aws ec2 describe-regions help
+        $ aws ec2 describe-regions --query Regions[].RegionName 
+        Refere docucmentation at aws cli reference
+        
+        
+        
+        
+      
             
 
-            
+       
