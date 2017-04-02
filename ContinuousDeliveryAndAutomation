@@ -783,6 +783,10 @@ VII   Scripting and Automating Operational Tasks
 VII.I Introduction
       -Create an IAM user with key-based access to AWS.  Grant this user and admin access role.
       - Install the CLI.  Use AWS instructions
+        $ sudo apt-get install python-pip 
+        $ pip install --upgrade --user awscli
+        $ aws configure
+          < enter credentials>
       - configure the CLI
         $ aws configure
         accept the default output format which is JSON.
@@ -795,8 +799,64 @@ VII.I Introduction
         
         
         
-        
-      
-            
+  VII.II General EC2 Administration Tasks
+       -Common commands for exam
+         $ aws ec2 run-instances --image-id ami-0b33d91d --instance-type t2.micro --key-name NV_RC
+         # aws ec2 describe-instances --instance-ids i-0c6e488d2203f7f75 --query 'Reservatio
+ns[].Instances[].State'
 
+        # aws ec2 create-tags --resources i-0c6e488d2203f7f75 --tags 'Key=Name,Value=test'
+        # aws ec2 describe-tags
+        # aws ec2 terminate-instances --instance-ids i-0c6e488d2203f7f75
+        # aws ec2 create-snapshot ...
+        # aws ec2 copy-snapshot ...
+        # aws ec2 delete-snapshot ...
+        # aws ec2 describe-images 
+        # aws ec2 create-image
+        
+VII.III Scripting S3 Operations
+       Create a bucket
+      # aws s3 mb s3://mp-raftorage
+      make_bucket: mp-raftorage
+      
+      root@precise64:~# aws s3 ls
+      2017-04-02 03:42:12 mp-raftorage
+      
+      
+      root@precise64:~# aws s3 ls mp-raftorage
+      root@precise64:~# cd test
+      root@precise64:~/test# ls
+      one  three  two
+      
+      root@precise64:~/test# aws s3 sync . s3://mp-raftorage
+      upload: ./three to s3://mp-raftorage/three
+      upload: ./one to s3://mp-raftorage/one
+      upload: ./two to s3://mp-raftorage/two
+      
+      root@precise64:~/test# aws s3 ls mp-raftorage
+      2017-04-02 03:43:47          0 one
+      2017-04-02 03:43:47          0 three
+      2017-04-02 03:43:47          0 two
+      
+      root@precise64:~/test# rm three
+      root@precise64:~/test# aws s3 sync . s3://mp-raftorage --delete
+      delete: s3://mp-raftorage/three
+      
+      root@precise64:~/test# aws s3 cp three s3://mp-raftorage
+      upload: ./three to s3://mp-raftorage/three
+      
+      root@precise64:~/test# aws s3 rm s3://mp-raftorage/three
+      delete: s3://mp-raftorage/three
+      
+      root@precise64:~/test# aws s3 ls mp-raftorage
+      2017-04-02 03:43:47          0 one
+      2017-04-02 03:43:47          0 two
+      
+      root@precise64:~/test# aws s3 rb s3://mp-raftorage --force
+      delete: s3://mp-raftorage/two
+      delete: s3://mp-raftorage/one
+      remove_bucket: mp-raftorage
        
+      for advanced actions like changing ACLs use "aws s3api help"
+      
+      
