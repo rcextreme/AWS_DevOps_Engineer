@@ -1,0 +1,31 @@
+[
+
+{
+"ParameterKey": "DBName"
+"ParameterValue":"MyDB"
+}
+{
+"ParameterKey": "DBPassword"
+"ParameterValue":"password"
+}
+{
+"ParameterKey": "DBRootPassword"
+"ParameterValue":"password"
+}
+{
+"ParameterKey": "DBUser"
+"ParameterValue":"admin"
+}
+{
+"ParameterKey": "InstanceType"
+"ParameterValue":"t2.micro"
+}
+{
+"ParameterKey": "KeyName"
+"ParameterValue":"NV_RC"
+}
+{
+"ParameterKey": "SSHLocation"
+"ParameterValue":"0.0.0.0/0"
+}
+]
