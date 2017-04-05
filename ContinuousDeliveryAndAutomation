@@ -860,5 +860,27 @@ VII.III Scripting S3 Operations
       for advanced actions like changing ACLs use "aws s3api help"
       
 VII.IV Working with CLoud Formation
+        In this section we find the CloudFormation commands that we should know for the exam
+        
+        # aws cloudformation describe-stacks   (To list stacks)
+        
+        # aws cloudformation create-stack --stack-name stack2 --template-url
+           https://s3.amazonaws.com/cf-templates-bvjcngoo7rup-us-east-1/20170858Nq-creation_policy \
+           --parameters file://params
+       
+          NOTE:
+             - In this example, params is a file I created to contain the parameters required by the template.
+             - As you can see the template is stored in S3
+             - Instead of an S3 URL you could referred to a local template using "file://..." as done for the 
+               params file
+       
+       # aws cloudformation describe-stacks --query 'Stacks[].[StackName,StackStatus]'
+       # aws cloudformation delete-stack --stack-name stack2
+       # aws cloudformation validate-template --template-body file://template
 
+VII.V  Working with Opsworks
+       
+       
+          
+              
       
