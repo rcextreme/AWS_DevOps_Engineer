@@ -693,23 +693,33 @@ VII  Creating Stacks and Managing Configuration with OpsWorks
 
 VII.I Opsworks Key Concepts
        Stack 
-       Stack Layer
+       Stack Layer (Load Balancer, App, DB)
        Chef recipes
        Coookbook repository
        Chef agent on each client
 
+
 VII.II Working with Stacks and Layers
-      Create an Opswork stack   (leave this stack for the remainder of this chaper)
-       - Chef 12 stack
-          name: helloworld
-          OS: Ubuntu Linux
+
+      Create an Opsworks Stack   (leave this stack for the remainder of this chaper)
+       - AWS -> Opsworks -> Add Your First Stack -> Chef 12 stack
+          name:            helloworld
+            OS:             Ubuntu Linux
+          Chef Version: 12
+          Use Custom Cheff Cookbooks:   YES
           Repository type: Git
-          Repo URL: demo-chef-recipe
-          Add stack
-          Add a layer
+          Repo URL:        demo-chef-recipe
+          Advanced->
+          Hostname theme: layer dependent
+          Add stack:
+          
+          Next Add a layer:
              name: webserver
-             Add Recipe-> Configure: simple_demo:default
-          Add Instance
+               security:
+                  Add a security Group
+                  Add Recipe-> Configure: simple_demo:default
+             
+          Now add an Instance
              Add 3 webservers: 
                 webserver1 -> scaling type: 24/7
                 webserver2 -> scaling type: time-based
@@ -718,21 +728,21 @@ VII.II Working with Stacks and Layers
              select webserver3 -> Configuration -> show how to enable Load-based autoscaling
              start webserver1 -> view the app in browser
          
-         Display how you would deplo an App
+         Display how you would deploy an App
             Opsworks -> your stack -> Apps -> Create an App and deploy
 
 
 VII.III Uderstanding Lifecycle events
       -Layer
          events:
-              setup
+              setup event
                  -when a server boots up
-              configure
+              configure event
                  -when an instance enters/leaves the online state
                  -when you add or remove an EIP
                  -when you attach or detach an ELB to a layer
-              Deploy
-              Undeploy
+              Deploy event
+              Undeploy event
                  -when you delete an App
               Shutdown event
                  -when you tell Opsworks to shutdown an instance
