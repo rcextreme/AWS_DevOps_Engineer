@@ -896,7 +896,40 @@ VIII.IV Working with CLoud Formation
 
 
 VIII.V  Scripting: Working with Opsworks
-           
+        Build the Opsworks helloworld stack using the demo-chef-recipe. Deploy the recipe as an app
+        
+        -Within the stack you can commands via the 'Run Commands' function
+        -When you deploy an App you can roll it back since Opsworks retains the 4 previous versions of the App
+        
+        You can run command and deploy Apps via the CLI as well with a single command
+        
+        There's a single API endpoint for Opsworks which resides is us-east-1
+        
+        Commands:
+          
+          aws opsworkds describe-stack
+          aws opsworks describe-stacks --query Stacks[].StackId     ( to get the stack id)
+          # aws opsworks describe-apps --stack-id <stack_ID>
+          # aws opsworks create-deployment --stack-id 448c3f56-b241-4b21-8c6b-00ba81c5888e --app-id 0  \
+                 dee8385-a1cf-47d4-86ba-280874de1e53 --command "{\"Name\":\"deploy\"}"
+          
+          Remember that "aws opsworks create-deployment" lets you run stack commands as well as App deployments
+
+VIII.VI Summary 
+        How to install CLI
+        describe - to list instances
+        create instance - run-instances
+        Create images
+        snapshots
+        s3 command for high level tasks
+        s3api for advances scenarios like configuring permissions
+        command to validate your cloudformation template
+        for opsworks rember the create-deployment command 
+        
+        
+          
+        
+        
        
           
               
