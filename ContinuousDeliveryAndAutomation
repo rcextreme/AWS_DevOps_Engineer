@@ -732,9 +732,12 @@ VII.II Working with Stacks and Layers
              select webserver3 -> Configuration -> show how to enable Load-based autoscaling
              start webserver1 -> view the app in browser
          
-         Display how you would deploy an App
+         how you would deploy an App
             Opsworks -> your stack -> Apps -> Create an App and deploy
-
+         
+         Discuss Monitoring
+         
+         Discuss Resources feature in a stack
 
 VII.III Uderstanding Lifecycle events
       -Layer
