@@ -708,16 +708,20 @@ VII.II Working with Stacks and Layers
           Chef Version: 12
           Use Custom Cheff Cookbooks:   YES
           Repository type: Git
-          Repo URL:        demo-chef-recipe
+          Repo URL:        https://github.com/rcextreme/demo-chef-recipe  
+          Repository SSH Key:    ( not needed since it's a public repo)
+          Repo Branch:    (leave blank to use master branch a default)
           Advanced->
           Hostname theme: layer dependent
-          Add stack:
+          -> Add stack
+          
           
           Next Add a layer:
              name: webserver
                security:
                   Add a security Group
-                  Add Recipe-> Configure: simple_demo:default
+                  Add Recipe-> Configure: simple_demo::default    
+                                   (the cookbook name in the project is 'simple_demo')
              
           Now add an Instance
              Add 3 webservers: 
@@ -773,7 +777,7 @@ VII.V  Replacing Failed instances with Auto Healing
               
        AH Considerations
        -AH is used when communication is lost with the instance
-       -Stop instances with Opswors.  If you stop it directoy from EC2, Opsworks will triger auto healing
+       -Stop instances with Opsworks.  If you stop it directly from EC2, Opsworks will triger auto healing
        -Use EBS volumes to store persistent data
        -The same OS is always used for an auto healed instance
 
@@ -887,8 +891,9 @@ VIII.IV Working with CLoud Formation
        # aws cloudformation delete-stack --stack-name stack2
        # aws cloudformation validate-template --template-body file://template
 
-VIII.V  Working with Opsworks
-       
+
+VIII.V  Scripting: Working with Opsworks
+           
        
           
               
