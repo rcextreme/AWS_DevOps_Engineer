@@ -15,15 +15,16 @@ II Introduction
 III  Getting Started with CloudWatch
 
   III.I CW Overview
-    Monitor AWS resources
-    Monitor Custom Metrics
-    Monitor and store logs
-    Set alarms
-    view graphs and statistics
-    monitor and react to changes
+    Key Components
+        Monitor AWS resources with standard metrics
+        Monitor with Custom Metrics
+        Monitor and store logs
+        Set alarms
+        view graphs and statistics
+        monitor and react to changes
     
     Open AWS console and connect to CW
-      - View metrics for active instances
+      - View metrics for created resources
     
     You can see CW metrics also from the EC2 service
       EC2->Monitoring
@@ -34,12 +35,66 @@ III  Getting Started with CloudWatch
     
     notice metrics are only stored for 2weeks
     
+    You can created your own Dashboard in CW
+    
     CPU Utilization 
     Adding text widgets
     
     
    
-III Getting Started with Cloudwatch
-
+  III.II Basic vs Detailed Monitoring
+    View basic monitoring of an instance in EC2 Dashboard
+      -Basic monitoring logs to CW Every 5mins
+      -Detailed monitoring logs data every 1min
+        -is enabled per ec2 instance
+     
+     Enable detailed monitoring on a instnance during launch & after created
+     
+     Enable detailed monitoring via CLI
+       # aws ec2 monitor-instances --instance-ids <instance_id>
+       # aws ec2 unmonitor-instances --instance-ids <Id>
+       you can do it while launching instance
+       # aws ec2 run-instances --image-id ami-09092360 Enabled=true
+     
+     
+     Aggregating metrics.  Only available for detailed monitoring
+     
+     
+     
+     
+ 
+ 
+ 
+ 
+ 
+   III.  Summary
+     we did a basic CW overview
+     -quick demo
+     -toured cw console
+     -how to work with metrics
+     
+     Basic monitoring vs Detailed Monitoring
+      -basic monitoring is going to give you data points in 5 minute interval
+      -detailed monitoring gives you data in 1 minute intervals 
+        -it incurs a cost
+        -you also get the ability to do aggregation of statistics in the console and the CLI. 
+      
+      We saw the differences between metrics, namespaces, and dimensions.
+      -metrics : are the units of measurement, or variables that we monitor.
+      -Namespaces : are the containers for those metrics
+      -dimensions : are  filters that we can apply against those to customize the way that the data comes back. 
+      
+      We viewed metrics via the CloudWatch console, as well as the CLI
+      
+      list-metrics: we used the list-metrics command in the CLI
+      
+      We looked at getting statistics for a metric via the console and the cli with the get-metrics statistics command
+      - Remember that we can only go back 14 days to look at the data
+      - via the cli you can also export that informat. 
+      
+     
+     
+    
+  
 
 
