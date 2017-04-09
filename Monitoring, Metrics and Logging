@@ -1,0 +1,45 @@
+I Overview
+    DevOps includes monitoring and measuring everything
+    
+
+II Introduction
+   Series Overview
+   What you can expect from this course
+     - cloudwatch
+     - monitoring with custom cloudwatch metrics
+     - creating CW alarms
+     - monitoring API calls with CT
+     - monitoring LOG files with CW
+     - Working with CW events
+
+III  Getting Started with CloudWatch
+
+  III.I CW Overview
+    Monitor AWS resources
+    Monitor Custom Metrics
+    Monitor and store logs
+    Set alarms
+    view graphs and statistics
+    monitor and react to changes
+    
+    Open AWS console and connect to CW
+      - View metrics for active instances
+    
+    You can see CW metrics also from the EC2 service
+      EC2->Monitoring
+    
+    Discuss System Status checks vs instance status checks
+    
+    review EBS metrics
+    
+    notice metrics are only stored for 2weeks
+    
+    CPU Utilization 
+    Adding text widgets
+    
+    
+   
+III Getting Started with Cloudwatch
+
+
+
