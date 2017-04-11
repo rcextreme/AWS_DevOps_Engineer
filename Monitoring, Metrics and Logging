@@ -60,7 +60,16 @@ III  Getting Started with CloudWatch
      Aggregating metrics.  Only available for detailed monitoring
      
      
-     
+  III.III Metrics, Namespaces and Dimensions
+    Definitions
+      -metric : the thing we want to monitor (i.e cpu, memory)
+      -Data Points: are gathered over time for a metric
+      -Namespace: these are logical groupings of metrics (i.e ec2, ebs)
+        -You could have a metric called CPU Utilization in different namespaces
+      -Dimension: This is a filter to sort a metric.  For exame you could display CPU IO
+         for an Instance or an ImageID
+      
+      -Open the CloudWatch User Guide and view all the default namespaces and their dimensions
      
  
  
