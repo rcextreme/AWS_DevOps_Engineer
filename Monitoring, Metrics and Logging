@@ -170,7 +170,9 @@ IV.III    Preparing EC2 instances for Custom Monitoring
             AWS sample script
            Script
   
+  IV.IV  
   
+  >aws cloudwatch put-metric-data --metric-name FreeMemoryGB --namespace Windows --value 5 --region us-east-1 --dimension 'Name=Server,Value=WIN'
   
   
   
