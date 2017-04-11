@@ -128,7 +128,69 @@ III.V Getting Statistics for a Metric
       - via the cli you can also export that informat. 
       
      
-     
+IV.  Monitoring with Custom CloudWatch
+
+IV.I Intro
+   Why do this?
+   prepare instances?
+   Creating Custom metrics In windows
+   Creating Custom metrics In Linux
+   
+
+IV.II Common Use Cases for Custom Metrics
+  Mem and Disk utilization is not monitored by default
+  
+  You can achieve this by creating custom metric data from the EC2 instances
+  
+  Then you need to send this data up to CW on a periodic basis
+    -Create a role to allow instance write access to CW
+    - Run a script via cron to send the data peridically
+    
+IV.III    Preparing EC2 instances for Custom Monitoring
+  Create a custom policy with Granular Permission
+    AWS -> IAM -> Create Policy -> Policy Generator
+       Service: CloudWatch
+       Actions: GetMetricStatistics,  ListMetrics,  PutMetricData
+       ARN: *
+
+       Service: EC2
+       Actions: DescribeTags
+       ARN: *
+
+       Name: CWPolicy
+    AWS -> IAM -> Create Role
+    
+    Launch an EC2 Windows Instance
+      UserData: https://gist.github.com/mikepfeiffer/a4ce6d25ae092f1a4ea97afad5879530
+                Install Python and AWS CLI
+                Install Chocolatey
+    
+    Launch a Linux instance
+      UserData: https://gist.github.com/mikepfeiffer/d889b3bc78b68193e407d487b197be04
+            AWS sample script
+           Script
+  
+  
+  
+  
+  
+IV.VI  Summary: Custom Cloudwatch
+  Use case for custom metrics
+  
+  No metrics by default for memory utilization or disk utilization.
+  
+  Preparing EC2 instances to be able to create Custom Metrics
+    -IAM permissions
+    -Permission to call the APIs with an IAM Role
+    -set up a granular IAM policy with only the permissions we need to set custom metrics. 
+    
+  We moved on to using the AWS CLI on Windows to publish custom metric data
+  
+  Used the put-metric-data command.  Remember this for exam
+  
+  how to do this as well on Linux using the AWS provided Perl scripts for memory and disk utilization
+  
+  
     
   
 
