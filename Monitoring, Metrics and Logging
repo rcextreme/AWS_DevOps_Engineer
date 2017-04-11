@@ -72,7 +72,33 @@ III  Getting Started with CloudWatch
       -Open the CloudWatch User Guide and view all the default namespaces and their dimensions
      
  
- 
+ III.IV Viewing and Searching for Metrics
+   -The CW dashboard won't display metrics for services you haven't configured in that region
+   -Searchin for metrics by typing a string (i.e write)
+   -When you're viewing a metric you can do Actions->Add_to_dashboar or actions->share to share url to
+   
+   -You can figure out all the metrics CW tracks via the User Guide or via the CLI
+     i.e: to list all ec2 metrics
+     # aws cloudwatch list-metrics --namespace 'AWS/EC2'
+     # aws cloudwatch list-metrics --namespace 'AWS/EBS'
+
+III.V Getting Statistics for a Metric
+      -CW only keeps 2weeks worth of stats for a metric.  To keep it longer you'll have to export the data
+      
+      -Some commands to view and export metric stats 
+      # aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization 
+          --period 3600 --statistics Maximum --dimensions 'Name=InstanceId,Value=i-01a0f3d6ceef72a57'  --start-time 2017-04-10-T09:0 
+          0:00 --end-time 2017-04-10-T10:00:00
+
+     # aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization 
+          --period 3600 --statistics Average --dimensions 'Name=ImageId,Value=____'  --start-time 2017-04-10-T09:0 
+          0:00 --end-time 2017-04-10-T10:00:00
+
+
+     # aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization 
+          --period 3600 --statistics "Sum" --dimensions 'Name=AutoScalingGroupName,Value=___'  --start-time 2017-04-10-T09:0 
+          0:00 --end-time 2017-04-10-T10:00:00
+           
  
  
  
