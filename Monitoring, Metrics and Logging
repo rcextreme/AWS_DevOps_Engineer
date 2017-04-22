@@ -219,23 +219,50 @@ V.III   Sending  Alarm Notifications via SNS
             
         
 V.IV    Scaling Based on CloudWatch Alarms
-        Exercise: Create an AutoScaling Group and Create Alarms with Scaling Policies
-            -Create Launch configuration
+        
+        Exercise: Create an AutoScaling Group with Alarms for Scaling Policies
+            -Create a Launch configuration
                 -Ubuntu
                 -enabled detailed monitoring
             -Create AutoScaling group
-                - 1 instance
-                -install stress
-            -Connect to instannce and install stress
+                - 1 instance, max of 4
+                - install stress
+            -Connect to instance and install stress and run it
+            -Select Scaling Policy and add Policy and alarm to scale by 1 based on CPU usage
+            -Display the alarm in CloudWatch.
+            -See the Alarm trigger the scaling policy and add an add an instance
+            -Create a second scaling policy and alarm this time to remove and instance when CPU drops
+            
+            
             
 
 V.V     Monitoring Estimated Account Charges
+        
+        Exercise: Creating a Billing alarm
+            -You must be in Northern Virginia Region
+            -You must be signed in as ROOT
+            -Connect to CloudWatch
+            -Display  billing metrics
+            -Create the billing alarm.
+            
+        
+        
 V.VI    Controlling Instance State with Alarms
+        
+        Exercise: Create an Alarm on EC2 to restart an instance
+            -Launch an instance
+            -In EC2 Dashboard create an alarm
+              -action= stop instance
+              -whenever= cpu <= 1%
+            -Display the Alaram in the CloudWatch console
+        
         we can recover instances based on some kind of system failure. 
         we can do cost optimization by shutting instances down if they're not being fully utilized. 
         we can also reboot, or terminate, them depending on the metrics and the threzsholds that we configure
         
+        
 V.VII   AWS CLI Commands for Managing Alarms
+
 
 V.VIII  Module Summary (Creating CloudWatch Alarms)
         understanding CloudWatch from a high level
