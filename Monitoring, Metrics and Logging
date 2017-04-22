@@ -262,7 +262,14 @@ V.VI    Controlling Instance State with Alarms
         
         
 V.VII   AWS CLI Commands for Managing Alarms
-
+        AWS CLI alarm commands (these are all parameter to 'aws cloudwatch' ...)
+        - mon-put-metric-alarm
+        - mond-describea-alarms
+        - mon-disable-alarm-actions
+        - mon-enable-alarm-actions
+        - mon-describe-alarm-history
+        - set-alarm-state
+        
 
 V.VIII  Module Summary (Creating CloudWatch Alarms)
         understanding CloudWatch from a high level
@@ -283,7 +290,43 @@ V.VIII  Module Summary (Creating CloudWatch Alarms)
 
         
         
+VI  Monitoring API Calls with CloudTrail
 
+VI.I Introduction
+
+VI.II CloudTrail Overview
+      Every action in the console,CLI,SDK is an API call
+      
+      overview: 
+        You create a trail and the log files are delivered to an S3 bucket.
+        The trail applies to all regions.  So all regions in your account will sent trail logs to your bucket
+        You can trigger notifications based on API action
+        Access to CT can be limited by IAM
+      
+      
+      
+VI.III Turning on CloudTrail
+      
+       Exercise: Enabling CloudTrail
+         - Open CT
+         - Get Started NOW to create trail
+         - discuss options
+         - once created click on the trail and discuss selected options
+         - Go to s3 and view bucket
+         - perform some API actions (create an instance, modify a Security Group, etc)
+         - it'll take about 15min for logs to appear in the trail
+         
+         
+       
+       
+VI.IV  Monitoring Events with CloudTrail API Activity History
+       
+       Exercise: Use AWS Console and the CLI to view a trail
+         
+       
+VI.V Configuring Permissions for CloudTrail
+
+VI.VI Summary
   
 
 
