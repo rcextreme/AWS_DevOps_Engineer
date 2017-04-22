@@ -102,7 +102,7 @@ III.V Getting Statistics for a Metric
  
  
  
-   III.  Summary
+   III.VI  Summary ( Getting Started with CloudWatch )
      we did a basic CW overview
      -quick demo
      -toured cw console
@@ -176,7 +176,7 @@ IV.III    Preparing EC2 instances for Custom Monitoring
   
   
   
-IV.VI  Summary: Custom Cloudwatch
+IV.VI  Summary: ( Monitoring With Custom Cloudwatch Metrics)
   Use case for custom metrics
   
   No metrics by default for memory utilization or disk utilization.
@@ -192,8 +192,71 @@ IV.VI  Summary: Custom Cloudwatch
   
   how to do this as well on Linux using the AWS provided Perl scripts for memory and disk utilization
   
-  
+
+V Creating CloudWatch Alarms
+
+V.I     Introduction
+        * Sending alarm notifications through SNS
+        * How to scale out and in using CW alarms
+        * How to set up notifications (billing and cost optimization)
+        * How to control instance state with CW alarms
+        * AWS CLI commands for CW
+        
+V.II    Understanding CloudWatch Alarms
+        You can set an alarm based on a metric value
+        You can only have up to 5000 alarms per AWS account.
+        Alarms can take actions. Like send a SNS notification
+        
+V.III   Sending  Alarm Notifications via SNS
+        Exercise: CPU Alarm on an EC2 instances
+          -Launch an Ubuntu instance with Detailed Monitoring enabled.
+          -From EC2 console, create an CW alarm to monitor CPU. Configure to send SNS email (create SNS topic)
+          -Install stress on the instance and run it
+            # sudo stress --cpu 8
+          -Confirm email is received
+          -View the alarm in the CW console
+          -Show how this aram could've been created in CW console
+            
+        
+V.IV    Scaling Based on CloudWatch Alarms
+        Exercise: Create an AutoScaling Group and Create Alarms with Scaling Policies
+            -Create Launch configuration
+                -Ubuntu
+                -enabled detailed monitoring
+            -Create AutoScaling group
+                - 1 instance
+                -install stress
+            -Connect to instannce and install stress
+            
+
+V.V     Monitoring Estimated Account Charges
+V.VI    Controlling Instance State with Alarms
+        we can recover instances based on some kind of system failure. 
+        we can do cost optimization by shutting instances down if they're not being fully utilized. 
+        we can also reboot, or terminate, them depending on the metrics and the threzsholds that we configure
+        
+V.VII   AWS CLI Commands for Managing Alarms
+
+V.VIII  Module Summary (Creating CloudWatch Alarms)
+        understanding CloudWatch from a high level
+        You can have 5000 alarms configured in a single AWS account. 
+        
+        Two ways to create CW alarms
+          1. From EC2 Console
+          2. From CW console
     
+        Remember that AutoScaling policies use CloudWatch Alarms
+        
+        Remember that you must be in the Northern Virginia US East 1 Region to be able to monitor account charges
+        Remember you have to enable billing metrics if you want to see account charges
+        
+        we can recover instances based on some kind of system failure. 
+        we can do cost optimization by shutting instances down if they're not being fully utilized. 
+        we can also reboot, or terminate, them depending on the metrics and the threzsholds that we configure
+
+        
+        
+
   
 
 
