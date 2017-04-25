@@ -324,10 +324,12 @@ VI.IV  Monitoring Events with CloudTrail API Activity History
        Exercise: Use AWS Console and the CLI to view a trail
         - Connect to Cloud Trail in the AWS console
         - Explore the table with all the trails from the API calls we made previously
+           -This displays only 7 days of history
+           -console will only display Create/update/delete actions
         - Display the same data via the Command line
            $ aws cloudtrail lookup-events help
            $ aws cloudtrail lookup-events --max-result 1   -> this shows the most recent change
-           $aws cloudtrail lookup-events --lookup-attributes 'Attributekey=EventName,AttributeValue=RunInstances'
+           $ aws cloudtrail lookup-events --lookup-attributes 'Attributekey=EventName,AttributeValue=RunInstances'
        
 VI.V Configuring Permissions for CloudTrail
         
@@ -342,7 +344,74 @@ VI.V Configuring Permissions for CloudTrail
        Study this page to set up central loggin
          https://aws.amazon.com/blogs/security/sharing-aws-cloudtrail-log-files-between-accounts/
          
-VI.VI Summary
+         
+VII Monitoring Log Files with CloudWatch
+
+VII.I Into
+
+VII.II Overview of CloutWatch Logs
+    -What is CloudWatch Logs
+     -Allows you to centrally capture Logs from EC2 instances and CloudTrail
+     
+    -CWL requires to install an agent on instance
+    
+    Terms:
+      -Log Group
+      -Log Stream (e.g each instance is a log stream)
+      -Log Events
+      -Metric Filter
+
+VII.III Setting up the CloudWatch Logs Agent on Ubuntu Linux EC2 Instance
+
+   Exercise: Working with CW logs  
+     http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
+     -Create a role to allow EC2 instances to forward data to CWL
+       -requires these actions
+         "logs:CreateLogGroup"
+         "logs:CreateLogStream"
+         "logs:PutLogEvents"
+         "logs:DescribeLogStreams"
+      -Launch Ubuntu EC2 instance
+       Bootstrap:
+         # apt-get update
+         # apt-get install apache2
+      - Create the config file for the CW agent
+      - Install and configure the agent with Python script from AWS
+      
+
+VII.IV Configuring a Windows Instance for CloudWatch Logs
+    - CWL is already built into the Windows EC2 Config Service
+    
+    Exercise: Launch Windows Instance with CWRole
+      -Connect via RDP
+      - Enable CWlogs running: ec2ConfigServiceSettings
+      - setup CWL config file similar to Linux
+      
+      
+    
+VII.V Creating Metric Filters for Instance Logs
+  - They allow you to basically search for patterns in log files, and create alarms based on that
+    and get notified about issues that are happening within your log files.  
+  
+  Exercise:
+    - Add a metric filter to our previous Logroup to notify us of a 404 error in the LogStream
+    - Have metric send an SNS notification
+
+
+VII.VI  Integrating CloudTrail with CloudWatch Logs
+
+   Exercise: How to send data from CT to CWL
+     -Connect to CT, select Log Group & enable to send logs to CWL
+     -Go into CWL and confirm you're getting the logs from CT
+     -In CT, View and run the CloudFormation template the AWS makes available to create Metrics and Alarms for CWL
+
+
+
+
+
+
+
+
   
 
 
