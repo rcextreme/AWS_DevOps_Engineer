@@ -322,10 +322,26 @@ VI.III Turning on CloudTrail
 VI.IV  Monitoring Events with CloudTrail API Activity History
        
        Exercise: Use AWS Console and the CLI to view a trail
-         
+        - Connect to Cloud Trail in the AWS console
+        - Explore the table with all the trails from the API calls we made previously
+        - Display the same data via the Command line
+           $ aws cloudtrail lookup-events help
+           $ aws cloudtrail lookup-events --max-result 1   -> this shows the most recent change
+           $aws cloudtrail lookup-events --lookup-attributes 'Attributekey=EventName,AttributeValue=RunInstances'
        
 VI.V Configuring Permissions for CloudTrail
-
+        
+       Exercise: Create a user account with access only to CLoudTrail 
+         -In IAM create a group
+           -Assign the CT read only access poliy
+         -Create a user
+           -assign a passowrd
+           -add the user to our group
+         -Login to IAM with user and confirm you only have access read only access to CT
+       
+       Study this page to set up central loggin
+         https://aws.amazon.com/blogs/security/sharing-aws-cloudtrail-log-files-between-accounts/
+         
 VI.VI Summary
   
 
