@@ -407,9 +407,40 @@ VII.VI  Integrating CloudTrail with CloudWatch Logs
 
 
 
-
-
-
+VIII Working with CloudWatch Events
+  
+VIII.I Intro
+  
+VIII.II Overview of CW Events
+     Amazon created this service to ease the task of performing actions based on certain events that happen
+     on your instances.  This works like a CRON scheduler for AWS
+     
+     The process involves creating an 'Event Rule' in CE for a certain event and then specify where you want 
+     to route that event to (Lambda, SNS, etc)
+     
+     Events 
+       -EC2 instance state change
+       -custom schedule
+       -API call
+       - Console Sign in
+       -Auto Scaling
+     
+  
+VIII.III  Automating EBS Snapshot
+       Exercise: Create an CE rule to take a snapshot of EC2 instance based on a schedule
+       -Create a rule 
+       -select schedule
+       -target: built-in, create a snapshot
+    
+VIII.IV Scheduling an EC2 Instance to Run only during business hours
+        Exercise: Create a CE rule to shutdown an instance
+        -Create rule to stop instance
+        -create rule start instance. THis will require you to write a lambda function in node.js
+            sample code is in Github gist
+        
+VIII.V Receive notification for AWS Console sing-in
+  
+  VIII.VI Module Summary
 
 
   
