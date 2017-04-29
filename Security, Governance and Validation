@@ -90,9 +90,34 @@ III.VII Implemting an IAM Password Policy
     
 
 III.VIII Securing Access to EC2 Instances
-
+        Lecture:
+            -Let's review these practices so they're fresh in your mind for the Exam.
+            -Implement Security Groups to restrict access to instances.  Use least access method
+            -Amazon recommends that you lock down your security groups to a single source IP or 
+              traffic from another security group
+            -A common approach is to use a private Subnet if possible.  Then leverage a NAT GW 
+              for patches, etc.  show diagram
+            -You can set IP forwaring in your NAT GW to forward say port 22 to your instance.
+              This way you're only broadcasting one IP address
+            
+        
+        
 III.IX Auditing Security with AWS Trusted Advisor
-
+        Exercise: Using Trusted Advisor
+            -Open TA and analyze the Dashboard for Recommended Actions
+            -The TA dashboard has a page for each of these
+                Cost Optimization
+                Performance
+                Security
+                Fault Tolerance
+        
+        For Exam:
+            -TA is designed to help you optimze AWS setting to:
+                Reduce Cost
+                Improve Performacne
+            -TA has a list of FREE security check
+            -TA has additional checks you can purchas
+            -
 III.X Module Summary
 
 
