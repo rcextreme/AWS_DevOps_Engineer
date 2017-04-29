@@ -39,11 +39,55 @@ III.III Enabling Security with IAM Users and Groups
 
 III.IV Using IAM Roles for EC2 Instances
 
+    Exercise: Adding a Role on an EC2 instance
+        -Create a role to interface with CloudWatch so instance can upload custom metric data.
+          you could do this by providing the user keys to the CLoudWatch agent but it's not as secured
+        -Launch an instance with the Role
+        -Display the temporary access keys via the instances metadata
+            # curl http://169.254.169.254/latest/meta-data/iam/security-credentials/CWRole
+    
+    Exam notes:
+        -Roles can only be assigned during launch of an instance.
+        -It's more secure to use roles instead of user Keys
+        -the AWS cli and SDKs automatically are able to access keys provided by a role. So the API calls
+          will be authenticated by default
+        -You can develop a custom App that can use the temporary access keys provided by a Role.
+        -Amazon throught the day refreshes the temporary access keys provided by a role.
+          You can view these keys via the instance's metadata
+          
+        
 III.V Following the Principle of Least Privilege with IAM Policies
+    
+    Exercise: Creating a restrictive/custom S3 policy
+        -Display the S3FullAccess Policy
+        -Modify this policy to allow only list&upload permision to a specific bucket
+          from a specific IP address
+        -Test this policy by uploading a file with 'aws s3 ls' and 'aws s3 cp'
+    
+    Exam notes:
+        -Remember principle of Least Privilege
 
 III.VI Enabling Multifactor Authentication
+    
+    Exercise: Enabling MFA
+        
 
 III.VII Implemting an IAM Password Policy 
+    
+    Exercise: Enable an IAM passowrd policy
+        -Enable a policy an a user
+        -Display the Security Token Service in the IAM Dashboard.  
+        
+    Exam notes:
+        -Enable an IAM password policy if a user needs access to the AWZ Console
+            For password complexity and expiration
+        -If a password is expired a user can still use access keys. they're separate
+        -Password xcomplexit setting aren't enforced on current password. Only on next 
+         time password is set
+        -Password expiration rules take effect immediately. 
+        -You can download an IAM  Credentials Report to see details regarding user's passwords.
+        -Security Token Service (STS) is what generates the temporary access keys for Roles
+    
 
 III.VIII Securing Access to EC2 Instances
 
