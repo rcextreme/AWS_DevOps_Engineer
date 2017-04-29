@@ -439,8 +439,16 @@ VIII.IV Scheduling an EC2 Instance to Run only during business hours
             sample code is in Github gist
         
 VIII.V Receive notification for AWS Console sing-in
-  
-  VIII.VI Module Summary
+        Exercise: Create a CE to track logins to AWS console
+        -Must be in N.Virginia
+        -Go to CloudWatch Events and create a new rule
+            -Apply to any user
+            -Target should be SNS
+        -Test the rule by login in to console. 
+        -Select 'show metrics of rules' to see logins
+        
+        
+VIII.VI Module Summary
 
 
   
