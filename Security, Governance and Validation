@@ -1,0 +1,61 @@
+I. Course Overview
+
+II. Course Introduction
+    Exam Blue Print Overview
+    
+    Course Overview
+    -Understandingg AWS Security Best practices
+    -Implementing Delegation and Federation
+    -Protecting Data In-Flight and at Rest
+    -Enablign IT Governance with AWS Services
+    
+    
+    
+III. Understanding AWS Security Best Practices
+
+III.I Introduction
+
+III.II Understanding the Shared Responsibility Model 3min
+    Lecture:
+    -AWS manages phsical access to the data centers
+    -AWS manages the individual services for uptime and access: Compute, Storage, Networking, Regions, AZs, Edge Locations
+    -Customer manages
+      -OS/Config, Firewall, Apps, Client Side Encrypting, server side encryption, Authentication and Access Control
+      
+      
+III.III Enabling Security with IAM Users and Groups
+    
+    Exercise: Securing IAM
+      -Login to AWS and complete the Security Status checks
+      -Create a user account
+      -Create and Admin Group and add user to account
+      -Login using the user account
+    
+    Exam notes:
+      -Don't use root account to login
+      -Don't have SSH keys on root account
+      -Try to assign permission to users via groups instead of adding a policy directly to the user
+      -Try not to use the generic ADMIN policy.  Try to create specific permission policies for each user.
+
+III.IV Using IAM Roles for EC2 Instances
+
+III.V Following the Principle of Least Privilege with IAM Policies
+
+III.VI Enabling Multifactor Authentication
+
+III.VII Implemting an IAM Password Policy 
+
+III.VIII Securing Access to EC2 Instances
+
+III.IX Auditing Security with AWS Trusted Advisor
+
+III.X Module Summary
+
+
+
+IV. Implementing Delegation and Federation
+
+V. Protecting Data In-Flight and at Rest
+
+VI. Enabling IT Goverancne with AWS Services
+
