@@ -118,11 +118,45 @@ III.IX Auditing Security with AWS Trusted Advisor
             -TA has a list of FREE security check
             -TA has additional checks you can purchas
             -
-III.X Understanding AWS Security Best Practices:  Module Summary
+III.X Module Summary: Understanding AWS Security Best Practices
 
+    Lecture:
+        Who can assume an IAM role
+        - user in same account as IAM role
+        - user in a different account as IAM role
+        - EC2 instance
+        - user from an external IDp (SAML or OpenID)
+        
+        STS is the key service that grants temporary access to Roles
+        
+        Trust Policy.  There are always two policies associated with a Role.  
+        -A permission policy
+        -Trust Policy - says who can use this role (ec2 inst or user)
 
 
 IV. Implementing Delegation and Federation
+
+IV.I Introduction
+
+IV.II Taking a closer look at IAM roles
+
+IV.III Delegating access to resources in another AWS account
+
+IV.IV AWS STS API Actions You Need to Know
+
+IV.V Corporate Identity Federation Use Cases
+
+IV.VI Creating an AWS Managed Active Directory Service
+
+IV.V Launching an EC2 Instance into Managed AD
+
+IV.VI Setting up Federated Access to the AWS Console
+
+IV.VII Web Identity Federation and Amazon Cognito Identity
+
+IV.VIII Module Summary
+
+
 
 V. Protecting Data In-Flight and at Rest
 
