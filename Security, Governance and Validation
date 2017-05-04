@@ -118,6 +118,8 @@ III.IX Auditing Security with AWS Trusted Advisor
             -TA has a list of FREE security check
             -TA has additional checks you can purchas
             -
+            
+            
 III.X Module Summary: Understanding AWS Security Best Practices
 
     Lecture:
@@ -139,21 +141,101 @@ IV. Implementing Delegation and Federation
 IV.I Introduction
 
 IV.II Taking a closer look at IAM roles
+    
+    Lecture:
+        Who can see an IAM role
+        - User in same account as IAM role
+        - User in a different account than IAM role
+        - Amazon EC2
+        - User from an external Identity Provider IdP (SAML or OpenID)
+    
+        Security Token Service (STS) is responsible for handing out temporary credentials
+    
+        IAM Roles consists of two policies
+        - A Permission policy : Specifies the access being granted
+        - A trust policy : This says who can use this policy (EC2 instance, IAM user, 3rd party provider)    
+    
+
 
 IV.III Delegating access to resources in another AWS account
+    
+    Exercise: Cross account access - Switch to a Role as an IAM user
+    
+        - Create a Dev user and write down its IP
+        - Using your root account, create an Admin role of type 'Cross Account Access'
+           and assign it to the Dev user
+        - Login as the Dev user and assume the Admin role
+        
+
 
 IV.IV AWS STS API Actions You Need to Know
+    Lecture
+        AWS STS API Actions
+        - AssumeRole : Granting Role to EC2 instances, Cross account access
+        - AssumeRolewith SAML : For corporate access when using AD, LDAP, etc
+                This leverages an AD Federation Service
+        -AssumeRolewithWebIdentity : Used with Idp such as Google, Facebook,etc
+        -GetFederationToken:  Similar to AssumeRole but credential has longe lifetime (up to 12hr)
+
+        Cognito - This is a service to help authenticate mobile apps.  It stores user settings
+               and facilitates 
+    
+
 
 IV.V Corporate Identity Federation Use Cases
-
+    
+    Lecture:
+        The two use cases for Corporate Identity Federation
+        - Custom Identity Broker Application - uses AssumRole or GetFederationToekn API
+        - SAML Compliant IdP - Uses AssumeRolewithSAML API
+        
+        show the diagrams for these two cases. from the security whitepaper
+    
+    
 IV.VI Creating an AWS Managed Active Directory Service
 
+    Exercise: Create an AD in AWS 
+        -Create the Directory
+        -Add the 'Access URL' to your directory to allow your AD users access to AwS console
+        
+
 IV.V Launching an EC2 Instance into Managed AD
+    
+    Exercise: Create an EC2 instance to manage your directory
+        - Create a Role to grant SSM access, this permission is required to join a directory
+        - Launch Windows instance selecting the option to join to AD
+        - Add a bootstratp script to install the Management tools for AD
+        
 
 IV.VI Setting up Federated Access to the AWS Console
+    
+    Exercise: Manage your AD to grant console access to a user
+        - Login to your windows instance using RDP
+        - Run 'AD Users and Computers' as the directory admin to administer your AD
+        - Create an AD user 'Dave'
+        - Create a group called RO-Access and add the user 'Dave'
+        - Back in AWS, select your AD and enable 'AWS Management Console'
+          -Create the Role you'll map to a user
+          -Add the AD you created to the Role
+          
+        
 
 IV.VII Web Identity Federation and Amazon Cognito Identity
 
+    Lecture:
+        -Use Web ID federation to leverage existing iDP and avoid having to manage
+          maintaining user ID. Show diagram
+        -Amazon Cognito is a service that lets you store preferences for mobile Apps
+          and helps you sync user data across mobile devices.
+        -Cognito use Web ID Fed
+        
+        Know the Basic Authentication Flow with Cognito. Here the device needs to talk
+        to Cognito as well as STS
+        
+        Know the Enhanced Auth with Cognito.  Here the device only talks to Cognito via
+        the GetCredentialsForIdentity API and then Cognito calls talks to STS
+        
+        Know the 
 IV.VIII Module Summary
 
 
