@@ -232,15 +232,68 @@ IV.VII Web Identity Federation and Amazon Cognito Identity
         Know the Basic Authentication Flow with Cognito. Here the device needs to talk
         to Cognito as well as STS
         
-        Know the Enhanced Auth with Cognito.  Here the device only talks to Cognito via
+        Know  Enhanced Auth with Cognito.  Here the device only talks to Cognito via
         the GetCredentialsForIdentity API and then Cognito calls talks to STS
         
-        Know the 
-IV.VIII Module Summary
+                
+        
+        
+IV.VIII Module Summary: Implementing delegation and federation
+    
 
 
 
 V. Protecting Data In-Flight and at Rest
+
+V.I Introduction
+
+V.II Protecting Data in Amazon S3
+
+    How does Amazon protect data in S3
+    - objects in S3 are stored on multiple devices across multiple data centers within a region
+    - S3 service regularly verifies the integrity of data using checksums
+       and if it detects data corruption it repairs it
+    - You can enable version to store every version of an object
+    
+    Protection With Server Side Encryption
+        -Amazon S3 Managed keys - S3 itself handles keys and encrypts/decrypts data
+        -AWS KMS-Managed Keys   - Logs in CloudTrail when keys were used
+        -Customer-provided keys - good way to gurantee that customer accessing data has the appropriate keys
+    
+    Protection with Client Side Encryption
+    - KMS-Managed Customer Master key
+    - Client side master key
+    
+    Protecting Data in Transit - This is done by default.  S3 uses SOAP over HTTPS connections
+    
+    
+    Exercise: Enable SSE on an S3 upload operation
+     - Select 'Details' on upload windows
+     - click 'Use server side encrypt'
+     - View your keys in IAM->KMS
+     
+        
+
+V.III Working with Amazon EBS Volume Encryption
+    
+    When you select to encrypt an EBS vol Amazon uses a key from your KMS.  It'll use
+    that same key to decrypt the vol and transfer data to the instance
+    
+    Exercise: Encrypting EBS Vols
+        - Encrypt a volume at creation
+            show the default key that gets created in KMS
+        - Encrypt the root volume by creating an Encrypted AMI
+
+    For exam:
+        You can only encrypt a vol at time of creation
+        A snap shot of an encrypted vol is encrypted
+        
+V.IV Using Encryption with Amazon RDS
+
+V.V  Protecting Data In-Transit of Public Links
+
+V.   Module Summary
+
 
 VI. Enabling IT Goverancne with AWS Services
 
