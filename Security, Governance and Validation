@@ -339,5 +339,70 @@ V.V  Protecting Data In-Transit of Public Links
 V.   Module Summary
 
 
-VI. Enabling IT Goverancne with AWS Services
+VI. Enabling IT Goverance with AWS Services
+    
+    Introduction
+    ------------
+    
+    
+    
+    Understanding IT Governance
+    ------------------------
+    
+    
+    Two popular IT Governance frameworks
+      COBIT
+      ITIL
+    
+    This module will focus on the most common governance domains covered by most IT Gov Frameworks
+    
+    
+    Asset Mngmt and Cost Control
+    ------------------------
+    
+    Compliance regulations that can require asset inventory: FISMA,  SOX, HIPPA
+    
+    AWS Config - This is a service that can help you do 
+        resource inventory 
+        config history
+        config change notification
+    
+    Billing and Cost Mngmt Dashboard - Give you Cost Control functions. You can
+        -Tag resources
+        -create reports
+        -create forecasts
+        -consolidated billing
+        -Billing alarms. These must be set up in the US East 1 region
+    
+    
+    
+    Physical and Logical Access Control
+    ------------------------
+    Certifications that validate AWS's physical security practices
+        SOC1
+        SOC2
+        PCI DSS
+        ISO 27001
+        FedRAMP
+    
+    Logic Access Control
+        CloudTrail
+        Multi-Factor Auth
+        Password Policies
+        IAM Roles, Policies and Perms
+        Trusted Advisor
+        S3 Bucket Policies & ACLs
+        
+    
+    Securing IT Resources
+    ------------------------
+    
+    
+    
+    Log Mngmt and Performance
+    ------------------------
+    
+    
+    Data protection and DR
+    ------------------------
 
