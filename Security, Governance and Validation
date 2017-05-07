@@ -306,6 +306,35 @@ V.IV Using Encryption with Amazon RDS
         - Simply know that RDS leverages SSL to encrypt data in transit to RDS
 
 V.V  Protecting Data In-Transit of Public Links
+    
+     For Exam:
+
+     Remember the AWS platform requires that the client browser use an SSL connection. 
+     -All traffic between the client and the AWS platform is encrypted within an SSL connection,  
+     -the client browser authenticates the identity of the service endpoint using a certificate. 
+     -This applies to connections using the CLI, and any of the AWS SKDs 
+
+     
+     Remember that HTTP traffic is unprotected by default, 
+     - It's recommended that your web applications use an SSL certificate enforce HTTPS connections. 
+     
+     Consider offloading the SSL processing from your own servers. 
+       -  The  process of encrypting and decrypting data requires a lot of additional CPU and memory overhead on your instances,
+       -  enable SSL offloading using an elastic load balancer in front of your web servers. 
+
+      Remember the importance of using a secure remote administrative connection to your own EC2 instances. 
+      
+      Windows servers are typically managed with a RDP, 
+        - by default this uses a self-signed certificate for protocol encryption. 
+        - So for optimal protection you should issue your own trusted certificate to your Windows servers for this purpose. 
+      
+      A common pattern for RDP to Windows machines is to deploy a 
+        - Remote Desktop Gateway so you can tunnel all of your RDP traffic through an SSL connection, 
+        
+      Linux servers use SSH by default, and this is a secure channel for communication  
+        - if you want X Windows for graphical administration on those Linux instances, 
+        - make sure to configure the traffic for SSH tunneling to protect your administrative connections. 
+
 
 V.   Module Summary
 
