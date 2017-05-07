@@ -397,12 +397,46 @@ VI. Enabling IT Goverance with AWS Services
     Securing IT Resources
     ------------------------
     
+    Best Practices
+     - Create a 'Golden' AMI
+     - Isolate servers at physical layer 'Tenancy: Dedicated hardware'
+     - Security Group
+     - NACL
+     - IPSec Hardware VPN 
+        Create a virtual private gateway in your VPC, then build an IPsec tunnel to your on-premises network gateway
+        Build multiple IPsec tunnels for redundancy
+     - AWS Direct connect gives you a dedicated private IPsec-encrypted connection
+     - CloudHub is a VPN connection for multiple locations in your on-premises network
+     - Software VPN on an EC2 instance.  There are appliances in available in the AWS Marketplance that you can use 
     
     
     Log Mngmt and Performance
     ------------------------
     
+        -Analyze network traffic using VPC Flow Logs, 
+         this will store logs for certain types of traffic in CloudWatch Logs
+        - S3 Access logs
+        - RDS access logs
+        - CloudTrail - records all API calls including actions from console which are also API calls
+        - CloudWatch alarms are the critical governance-enabling feature on the AWS Cloud
+        - EC2 Instance Status
+        - Amazon SNS
+        - Amazon Incident Mngt Team - Provide monitoring on a 24/7 basis, 
+           for low level hardware and Security type events
+        
+        
+    
+    
     
     Data protection and DR
     ------------------------
+    
+        Ways to protect data against disasters
+        - EC2 Snapshots. Point-in time incremental backups
+        - Storage Gateway, on-premise application to backup data to AWS
+        - S3 and Glacier
+        - multi-az RDS
+        - AWS import/export
+        - RT 53, does healthchecks similar to ELB
 
+    
