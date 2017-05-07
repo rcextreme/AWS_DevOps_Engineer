@@ -289,6 +289,21 @@ V.III Working with Amazon EBS Volume Encryption
         A snap shot of an encrypted vol is encrypted
         
 V.IV Using Encryption with Amazon RDS
+    
+    Encrypting a new DB is similar to the process of encrypting a Vol in EC2.
+
+    RDS offers a way to encrypt data to RDS in transit using SSL.  Read link below for detail
+        http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html
+        
+    Exercise: Show how to encrypt data at rest in RDS
+        - Start to launch an RDS instance
+        - Select option to encrypt the DB
+        - Show the new key generated in the KMS
+        - Cancel the launch
+
+    For exam:
+        - How data is incrypted at rest in RDS
+        - Simply know that RDS leverages SSL to encrypt data in transit to RDS
 
 V.V  Protecting Data In-Transit of Public Links
 
