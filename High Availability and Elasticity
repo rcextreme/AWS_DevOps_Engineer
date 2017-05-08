@@ -1,0 +1,222 @@
+
+I.   Architecting for HA and Scalability
+
+     Intro
+     ------
+     discuss sections in this module
+     
+     
+     Understanding Elasticity and Scalability
+     ------------------------------------------
+
+      Lecture: 
+        - Explain why in the past architects would overprovision their Apps from day one
+        
+        - Today with cloud you can scale elastically. Show diagram with ELB and ASG
+        
+        - Explain that Elastic scaling requires stateless Apps
+            stores no session information
+            user session info typically stored in a DB or DynamoDB table
+            easily scales horizontally
+        
+        -  Session Affinity - You may be able to mitigate session state issues with stateful applications and horizontal scaling 
+           by implementing something called session affinity, and what this means is that once a user is connected 
+           to a server, they stay connected to that server until their session is complete. 
+           But the main limitation with this is that when the architecture scales, 
+           existing users won't be able to make use of new compute nodes that are launched to support the application.
+           
+         
+         - How to Scale Vertically
+           1. stop instance
+           2. setting -> change instance type
+         
+         - Limitation to Scale Vertically
+           - only on EBS backed root vols
+           - Virtualization type of new instance must match (HVM or PV)
+     
+     
+     
+     Implementing Disposable Resources
+     ------------------------------------
+     Lecture:
+     
+       Describe immutable infrastructure. You can destroy and redploy servers instead of logging in and fixingg
+     
+       Benefits of Immutable Infrastructures
+        - Eliminate configuration drift
+        - Reduce failures and errors on servers built with a repeatable way
+            golden AMIs
+            bootstrapping scripts
+        - Stabilize CI/CD
+     
+     
+     
+     Loosely Coupled Architectures
+     ------------------------------
+    
+     Loose coupling encompasses the idea of micro-services.  Where each service stands on its own
+     and interacts via standard interfaces such as HTTP verbs
+     
+
+     Methods to achieve loose-coupling
+       - Using Route53 with a CNAME record for an LB.  This way users are un-aware if LB is 
+         updated or servers added   
+       - Using queues from SQS.  A front-end system loads tasks in SQS. A back-end system
+         reads queue and processes tasks.
+     
+     
+     
+     
+     Architecting with Services Instead of Servers
+     ------------------------------------------------
+     ways to achieve this:
+     
+       - When developing an application try to use pre-built AWS services: SQS,DBs, S3, SNS, etc
+         This might save you money and time
+     
+       - Static Websites server up via CloudFront and S3
+     
+       -  Use Servervless Architectures with Lambda functions
+     
+     
+     
+     Eliminating Single Pts of Failue
+     ------------------------------------
+     
+     -Show a VPC diagram with dual private and public subnets
+      Use NAT GW on each public zone
+     
+     -Deploy your Web,App & DB server in the public subnet
+     
+     -Use AutoScaling for your Web and App servers
+     
+     -Use Multi-AZ for yoru DB
+     
+     
+     
+     
+     Summary
+     ------------
+     
+     
+
+
+II.  Understanding Auto Scaling
+
+      Intro
+      ------
+      
+      
+      Creating an ELB
+      ------------------
+      
+      
+      Setting up a Launch Confi and Auto Scaling Group
+      ------------------------------------------------
+      
+      
+      Automatically Replacing Failed Instances
+      ------------------------------------------
+      
+      
+      Scaling Dynamically or on a Schedule
+      ------------------------------------
+      
+      
+      Launching Spot Instnaces in Auto Scaling Groups
+      ------------------------------------------------
+      
+      
+      Implementng Lifecycle Hooks
+      ------------------------------
+      
+      
+      Creating Self Healing AUto Scaling Groups
+      ------------------------------------------
+      
+      
+      Module Summary
+      ------------------
+      
+      
+
+III. Implementing Scalable and HA Databases
+
+      Intro
+      ------
+      
+      
+      Overview of Amazon RDS
+      ------------------------
+      
+      
+      Setting up Amazon RDS Muti-AZ Deployments
+      ------------------------------------------
+      
+      
+      
+      Vertical and Horizontal Scale with RDS
+      ------------------------------------------
+      
+      
+      Building your own DB servers on EC2
+      ------------------------------------
+      
+      
+      
+      Getting Started with DynamoDB
+      ------------------------------
+      
+      
+      DynamoDB provisioned Throughput
+      ------------------------------------
+      
+      
+      Secondary Indexes in DynamoDB
+      ------------------------------
+      
+      
+      
+      Creating DynamoDB Tables
+      ------------------------
+      
+      
+      Module Summary
+      ------------------
+      
+      
+
+IV.   Deploying a Highly Available and Elastic Architecture
+
+      Introduction
+      ------------
+      
+      
+      What we're going to build
+      ------------------------------
+      
+      
+      Setting up a VPC
+      ------------------
+      
+      
+      Creating a DB Tier for the App
+      ------------------------------------
+      
+      
+      Defining the Launch Config
+      ------------------------------
+      
+      
+      Setting up a Load Balancer and Auto Scaling Group
+      ------------------------------------------------------
+      
+      
+      Validating the Deployment
+      ------------------------------
+      
+      
+      Module Summary
+      ------------------
+      
+      
