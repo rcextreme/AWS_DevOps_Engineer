@@ -110,30 +110,93 @@ II.  Understanding Auto Scaling
       Creating an ELB
       ------------------
       
+      Exercise: Creating ELB + ASG + RT53 + Certificate
+       - Create a RT53 Zone with a real Domain
+       - Create a certificate in Certificate Mngr
+       - Create a Classic LB in EC2
+          - Listen on port 443 and forward to Port 80.  
+          - Add certificate this way you'll offload encrypting of traffic from servers to ELB
+      - Add a record set for the ELB into the RT53 zone
       
-      Setting up a Launch Confi and Auto Scaling Group
+      
+      
+      Setting up a Launch Config and Auto Scaling Group
       ------------------------------------------------
+      
+      Exercise: 
+       - Create a custom policy to grant ability to 'Create Tags'
+       - Create a Role and assign this policy
+       - Create the Launch Config in EC2 with detailed monitoring
+       - Grab Mike's Gist to 'set up a basic web page' & add it to bootstratp
+            https://gist.github.com/mikepfeiffer
+       - Create ASG
+       - Open web page served by the instances once the're up
+       - To see the commands to do all these steps manually view gist called
+          "Example to Create AWS ELB, Launch Config, and Auto Scaling Group"
+      
       
       
       Automatically Replacing Failed Instances
       ------------------------------------------
       
+      Exercise:
+       - Change Health Check type in ASG to 'ELB'
+       - Install GitHub for windows on your system to have SSH
+       - SSH into one of the instances and stop httpd
+       - Watch new instance come online
+       
+
       
       Scaling Dynamically or on a Schedule
       ------------------------------------
+
+     Exercise:
+      - Add a "on demand" scaling policy to your ASG 
+        - Add alarm if NetworkIn greater than ??? bytes
+        - Do a Simple Scaling policy instead of a Step policy
+        - Load "Artillery" on an instance to generate the traffic
+           # artillery quick --duration 1200 --rate 20 https://www.aws.labs.info
+        - watch the traffic in CloudWatch Metrics.  See instance launch
+        - remember the performance for the alarm is the aggregate of all instances
+      
+      -  Schedule based Scaling Policy
+         - Select 'Scheduled Actions tab' for the ASG
+         - specify the time for the action
+         
       
       
       Launching Spot Instnaces in Auto Scaling Groups
       ------------------------------------------------
       
+      Process to Set ASG with Spot instance
+      1. Create a Launch Config specifying Spot
+      2. Set a bid price
+      3. Associate LaunchC with ASG
+      4. Understand spot market price vs bid price
+      
+      
+      Exercise:
+       1. Create a new Launch Config
+       2. Select t1.ami cause t2.micro is not available as a Spot
+       3. add bid price
+       
+       
       
       Implementng Lifecycle Hooks
       ------------------------------
+      http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html
+      
+      You can add a Lifecycle Hook to an ASG to perform custom actions when 
+      an instance is being launched or being terminated. The hook will pause the lifecycle for an hour
+      or until you send a complete signal.
+      
       
       
       Creating Self Healing AUto Scaling Groups
       ------------------------------------------
       
+      Create an Austo Scaling Group with a min and a max of 1 instance.
+      So if the instance status were to fail ASG will relaunch it immediately.
       
       Module Summary
       ------------------
