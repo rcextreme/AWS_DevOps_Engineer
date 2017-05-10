@@ -198,6 +198,7 @@ II.  Understanding Auto Scaling
       Create an Austo Scaling Group with a min and a max of 1 instance.
       So if the instance status were to fail ASG will relaunch it immediately.
       
+      
       Module Summary
       ------------------
       
