@@ -213,9 +213,49 @@ III. Implementing Scalable and HA Databases
       Overview of Amazon RDS
       ------------------------
       
+      Features of RDS
+      
+       - Fully Managed
+          -Spins up EC2 instances on your behalv.  But you won't see them in console
+          -Autmated Backups & Patching
+          -Offers Multi-AZ with Synchronous replication
+          -Automatic Failover.  DB has a single end point name.  So no need to update client
+       
+      DB Engines
+        -Aurora
+          -5times throughput of MySQL
+          -up to 15 Read Replicas with less than 10ms lag
+          -up to 64TB of Auto Scaling storage replicated over multiple AZs
+          - which regios support Aurora.
+          
+        -MySQL
+          -up to 6TB in size
+          -up to 32vCPUs and 244 GiB Memory
+        
+        -MariaDB
+          -A MySQL compatible DB with strong open source support
+          -Details...
+        
+        -PostgreSQL
+          -An Oracle open-source DB
+        
+        -Oracle (Oracle EE, Oracle SE, Oracle SE One, Oracle SE Two)
+        
+        -Microsoft SQL Server
+          Uses SQl Database Mirroing to accomplish replication
+          
+          
+       
       
       Setting up Amazon RDS Muti-AZ Deployments
       ------------------------------------------
+      
+      Exercise: Deploy a MultiAz RDS DB
+        - Engine: SQL
+        - Display features of the created DB in the console
+          - show master/slave inst
+          - show end point
+        -Reboot the primary instance to show failover
       
       
       
