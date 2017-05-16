@@ -262,15 +262,65 @@ III. Implementing Scalable and HA Databases
       Vertical and Horizontal Scale with RDS
       ------------------------------------------
       
+      - Vertical scaling is achieved by enlarging the instance running the DB (+CPU, +Memory, +Storage)
+      - Horizontal Scaling is achieved by adding read replicas
+        -Only allowed on certain DB Engines: MySQL, Postgress SQL, Aurora
+        -The service takes a Snapshot of the instance
+        -It uses the DB engine's native Asynchronous Replication to copy data
+        -This enhances performance
+      
+      Exercise: Vertical Scaling
+        - Have a pre-created RDS Instance
+        - Select: Instance Actions -> Modify.  You'll be able to change
+          - Instance type
+          - Storage
+          - IOPs
+      
+      Exercise: Horizontal Scaling
+        - Have a pre-created RDS Instance
+        - Select: Instance Actions -> Create Read Replica
+        - Show how to promote the replica to a Master. So you can use as a type of DR
+        
+        
       
       Building your own DB servers on EC2
       ------------------------------------
       
+      You may want to do this if you want to be able to log into the EC2 instance running the DB
+      and if you want to manage the DB install yourself.
+      
+      For prod you'd still want an HA deployment in two AZs. Since networks will be different you
+      can't use a public IP.  So you'll want to use RT53 to create a Zone.
+      - you'll want a low TTL
+      - You'll have to do failover manually
       
       
       Getting Started with DynamoDB
       ------------------------------
+      Tables
+       - No limit on data you can store here
+       - Amazon will spread the table across different systems in 3 Data Centers
+       
+       Items
+        -Each record in a table is called an item
+        
+       Attributes
+        -Each item is made up of individual attributes
+        
+       Primary key
+        -Each table has a primary key to differentiate items. 
+        -Tables are Schema-Less.  This means items can have different number of attributes.
+          -In the Relational DB world tables have Schema. All records must contain same columns.
+           else you'd have to do a DB migration
       
+       Explain Partition Key and Sort Key as they relate to the Primary Key
+       
+       Partitions are chunks of storage and a table may span several partitions. 
+       
+       
+        
+       
+       
       
       DynamoDB provisioned Throughput
       ------------------------------------
