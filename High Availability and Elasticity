@@ -325,15 +325,58 @@ III. Implementing Scalable and HA Databases
       DynamoDB provisioned Throughput
       ------------------------------------
       
+      You must specify the desired throughput when creating a dynamoDB table.
+      Because DynamoDB stores data across  3 data centers there are two ways to read data
       
+      Eventually consistent reads
+        - The read operation will not wait for the last write to be committed across all AZs
+      
+      Strong consisten reads
+        - The read operation will wait for the last write to be committed across all AZs
+      
+      DynamoDB calculates reads in Capacity Units. Data is read in 4KB chunks so 1 Read CU is
+        - 4KB/S = 1 strong consistency read
+        - 4KB/s = 2 eventual consistency read
+        
+      As for writes 1KB = 1 write CU 
+        
+        
       Secondary Indexes in DynamoDB
       ------------------------------
       
+      To understand Indexes think of a book.  To search for a word you turn to the back and look
+      at the index to see what pages that were is found in.
       
+      Primay Key = is made up of the Partition Key and Sort Key
+        - Each partition represents a chunk of memory.  So all items with the same partition key
+          will be stored in the same memory area.
+      
+      Local Secondary Index
+        - LSI can only be generated when the table is created
+        - Has the same Partition key as the Primary Key
+        
+        
+        
+      Global Seconday Index
+        - These may be generated after the table has been created
+      
+      Show screen shot displaying when GSI are created
+      
+         
+           
       
       Creating DynamoDB Tables
       ------------------------
       
+      Exercise:
+        - Build a DynamoDB table using the GUI. DOn't have to commit the action
+        - Build a DynamoDB table using via CLI.  Use pre-created scripts
+            There's a JSON file that creates the table
+            There's a JSON file that populates data
+            There's a script that calls runs the JSONs.
+             https://github.com/rcextreme/dynamodb-example-table
+        
+       
       
       Module Summary
       ------------------
