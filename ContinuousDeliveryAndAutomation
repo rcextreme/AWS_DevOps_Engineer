@@ -10,7 +10,8 @@ I Overview
 
 II Series Introduction
 
-II.I Getting Started
+ Getting Started
+ ----------------
   Series Introductions
   -Continuous Delivery and Automation
   -Monitoring, Metrics and Logging
@@ -25,20 +26,24 @@ II.I Getting Started
   -Creating Stacks and Managing Config with Opsworks
   -Scripting and Automating Operational Tasks
 
-II.II  Prerequisites for the Exam
+Prerequisites for the Exam
+--------------------------------
    -Have an associate cert
    -Have experience with scripting and programming
 
-II.III Exploring the Exam Blueprint
+Exploring the Exam Blueprint
+--------------------------------
    -How to access the blueprint
    -Go over the blueprint
 
-II.IV Tips for Studying for the Exam
+Tips for Studying for the Exam
+--------------------------------
   -AWS Sample questions
   -AWS Practice exam
   -Read FAQs
 
-II.V Keeping up with updates
+Keeping up with updates
+--------------------------------
   - AWS official Blog
   - Follow #AWS on twitter
   - reddit
