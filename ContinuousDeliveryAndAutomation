@@ -96,7 +96,7 @@ Summary
 
 IV. Understanding Appl Licecycle Mgmt
 
-  IV.I Intro
+  Intro
     managing the lifecycle of an app running on AWS
     using Git
     continuous delivery pipeline with AWS and Jenkins
@@ -105,7 +105,7 @@ IV. Understanding Appl Licecycle Mgmt
     blue-green app release pattern
 
 
-  IV.II Version Control
+  Version Control
     reference  http://docs.aws.amazon.com/powershell/latest/userguide/specifying-your-aws-credentials.html
     Set up AWS Code Commit
     -view AWS-> CodeCommit -> UserGuide -> SetUp
@@ -141,7 +141,8 @@ IV. Understanding Appl Licecycle Mgmt
 
 
 
-  IV.III Getting started with CodeDeploy and CodePipeline
+  Getting started with CodeDeploy and CodePipeline
+  -------------------------------------------------
   
      Project's repo  https://github.com/mikepfeiffer/aws-codedeploy-jenkins-linux
 
@@ -184,7 +185,8 @@ IV. Understanding Appl Licecycle Mgmt
 
 
 
-  IV.IV Build a pipeline with  a Build Stage
+  Build a pipeline with  a Build Stage
+  -------------------------------------------------
      This video implements this tutorial:  
                  http://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html
 
@@ -277,7 +279,8 @@ IV. Understanding Appl Licecycle Mgmt
 
   
 
-  IV.V Adding a Test Stage to the Pipeline
+  Adding a Test Stage to the Pipeline
+  -------------------------------------------------
     - See the project in Github and notice the Rake file includes a test section that calls a Ruby script
     
     - Add a new project in Jenkins for the test stage
@@ -305,7 +308,8 @@ IV. Understanding Appl Licecycle Mgmt
        
       
      
-  IV.VI Bootstrapping and Building Images
+  Bootstrapping and Building Images
+  -------------------------------------------------
   
       -You want your instances to come online quickly during deployments.
       
@@ -323,7 +327,8 @@ IV. Understanding Appl Licecycle Mgmt
   
 
   
-  IV.V Blue-green deployments
+  Blue-green deployments
+  -------------------------------------------------
      -Diagram of an blue-green deployment using RT53 and ELB
         Use weighted routing
         Canary analysis
