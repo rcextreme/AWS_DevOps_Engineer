@@ -51,10 +51,10 @@ Keeping up with updates
 
 III. Integration and Continuous Delivery
 
-  III.I Introduction
+  Introduction
     -Pipelines to commit code to prod
 
-  III.II Understanding the DevOps MindSet
+ Understanding the DevOps MindSet
 
     Understanding the DevOps Mindset
     - cultural change, paradigm shift, collaboration
@@ -68,7 +68,7 @@ III. Integration and Continuous Delivery
        -test & version code
        -infrastructure code
 
-  III.III Continuous Integration & Continuous Deployment
+Continuous Integration & Continuous Deployment
   - CI stops short of pushing changes to prod while cd does push to prod
   - Automate everything.  Pipeline gets triggered by a code submit
   - Define infrastructure as code
@@ -76,17 +76,17 @@ III. Integration and Continuous Delivery
   - Unify the app and the infras.
   - perform end-to-end automated testing
 
-III.IV  Infrastructure as Code
+Infrastructure as Code
   - Repeatability: Humans make mistakes
   - Agility: Roll forward or back easily
   - Auditing & Security: paper trail and permissions
 
-III.V  Automation and Configuration Management Tools
+Automation and Configuration Management Tools
   - provisioning: cloudformation, opsworks, beanstalk
   - declarative vs imperative scripts: loosely coupled to implementation
   - chef, puppet, saltstack, ansible, DSC
 
- III.VI Summary
+Summary
  - Collaboration
  - Automation
  - Versioning app and infrastructure code
