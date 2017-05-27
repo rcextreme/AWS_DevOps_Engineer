@@ -350,13 +350,13 @@ VI.V Configuring Permissions for CloudTrail
          
          
          
-VII Monitoring Log Files with CloudWatch
+VII Monitoring Log Files with CloudWatch Logs
 
 VII.I Into
 
 VII.II Overview of CloutWatch Logs
     -What is CloudWatch Logs
-     -Allows you to centrally capture Logs from EC2 instances and CloudTrail
+     -Allows you to centrally capture Logs from EC2 instances , From Applications and from CloudTrail
      
     -CWL requires to install an agent on instance
     
@@ -404,7 +404,8 @@ VII.V Creating Metric Filters for Instance Logs
 
 
 VII.VI  Integrating CloudTrail with CloudWatch Logs
-
+        https://aws.amazon.com/blogs/aws/cloudtrail-cloudwatch-integration-partners-too/
+        
    Exercise: How to send data from CT to CWL
      -Connect to CT, select Log Group & enable to send logs to CWL
      -Go into CWL and confirm you're getting the logs from CT
@@ -427,7 +428,7 @@ VIII.II Overview of CW Events
        -EC2 instance state change
        -custom schedule
        -API call
-       - Console Sign in
+       -Console Sign in
        -Auto Scaling
      
   
@@ -440,7 +441,7 @@ VIII.III  Automating EBS Snapshot
 VIII.IV Scheduling an EC2 Instance to Run only during business hours
         Exercise: Create a CE rule to shutdown an instance
         -Create rule to stop instance
-        -create rule start instance. THis will require you to write a lambda function in node.js
+        -create rule to start an instance. This will require you to write a lambda function in node.js
             sample code is in Github gist
         
 VIII.V Receive notification for AWS Console sing-in
