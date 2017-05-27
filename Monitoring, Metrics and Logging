@@ -146,7 +146,9 @@ IV.II Common Use Cases for Custom Metrics
     -Create a role to allow instance write access to CW
     - Run a script via cron to send the data peridically
     
-IV.III    Preparing EC2 instances for Custom Monitoring
+IV.III    Preparing EC2 instances to publish Custom Monitoring data to CW
+  http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html#mon-scripts-perl_prereq
+  
   Create a custom policy with Granular Permission
     AWS -> IAM -> Create Policy -> Policy Generator
        Service: CloudWatch
@@ -158,7 +160,7 @@ IV.III    Preparing EC2 instances for Custom Monitoring
        ARN: *
 
        Name: CWPolicy
-    AWS -> IAM -> Create Role
+       AWS -> IAM -> Create Role
     
     Launch an EC2 Windows Instance
       UserData: https://gist.github.com/mikepfeiffer/a4ce6d25ae092f1a4ea97afad5879530
@@ -215,7 +217,7 @@ V.III   Sending  Alarm Notifications via SNS
             # sudo stress --cpu 8
           -Confirm email is received
           -View the alarm in the CW console
-          -Show how this aram could've been created in CW console
+          -Show how this alarm could've been created in CW console
             
         
 V.IV    Scaling Based on CloudWatch Alarms
@@ -264,7 +266,7 @@ V.VI    Controlling Instance State with Alarms
 V.VII   AWS CLI Commands for Managing Alarms
         AWS CLI alarm commands (these are all parameter to 'aws cloudwatch' ...)
         - mon-put-metric-alarm
-        - mond-describea-alarms
+        - mon-describea-alarms
         - mon-disable-alarm-actions
         - mon-enable-alarm-actions
         - mon-describe-alarm-history
@@ -299,7 +301,7 @@ VI.II CloudTrail Overview
       
       overview: 
         You create a trail and the log files are delivered to an S3 bucket.
-        The trail applies to all regions.  So all regions in your account will sent trail logs to your bucket
+        The trail applies to all regions.  So all regions in your account will send trail logs to your bucket
         You can trigger notifications based on API action
         Access to CT can be limited by IAM
       
@@ -325,7 +327,7 @@ VI.IV  Monitoring Events with CloudTrail API Activity History
         - Connect to Cloud Trail in the AWS console
         - Explore the table with all the trails from the API calls we made previously
            -This displays only 7 days of history
-           -console will only display Create/update/delete actions
+           -Console will only display create/update/delete actions
         - Display the same data via the Command line
            $ aws cloudtrail lookup-events help
            $ aws cloudtrail lookup-events --max-result 1   -> this shows the most recent change
@@ -343,6 +345,9 @@ VI.V Configuring Permissions for CloudTrail
        
        Study this page to set up central loggin
          https://aws.amazon.com/blogs/security/sharing-aws-cloudtrail-log-files-between-accounts/
+         
+         
+         
          
          
 VII Monitoring Log Files with CloudWatch
