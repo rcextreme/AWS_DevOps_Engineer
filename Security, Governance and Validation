@@ -200,6 +200,7 @@ IV.VI Creating an AWS Managed Active Directory Service
         
 
 IV.V Launching an EC2 Instance into Managed AD
+     https://aws.amazon.com/blogs/security/how-to-configure-your-ec2-instances-to-automatically-join-a-microsoft-active-directory-domain/
     
     Exercise: Create an EC2 instance to manage your directory
         - Create a Role to grant SSM access, this permission is required to join a directory
